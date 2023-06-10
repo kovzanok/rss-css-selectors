@@ -1,0 +1,49 @@
+@mixin roundShape($background-color, $width, $height) {
+  position: relative;
+  display: block;
+  width: $width;
+  height: $height;
+  border-radius: 50%;
+  background-color: $background-color;
+}
+
+@mixin roundShapeFruit($background-color) {
+  @include roundShape($background-color, 50px, 50px);
+}
+
+apple {
+  @include roundShapeFruit(red);
+  &#rotten {
+    background-color: rgb(179, 34, 34);
+    &::after {
+      position: absolute;
+      content: '';
+      left: 20%;
+      top: 30%;
+      @include roundShape(rgb(97, 27, 27), 20px, 20px);
+    }
+  }
+}
+
+orange {
+  @include roundShapeFruit(orange);
+}
+
+.green {
+  background-color: green;
+}
+
+.markup {
+  div {
+    padding-left: 25px;
+  }
+}
+
+apple.highlighten,
+orange.highlighten {
+  border: 2px solid black;
+}
+
+.highlighten {
+  font-weight: 700;
+}
