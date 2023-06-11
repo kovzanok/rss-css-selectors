@@ -1,6 +1,7 @@
 import GameBlock from '../../utils/GameBlock';
 
 export default class CssInput extends GameBlock {
+  private form!: HTMLFormElement;
   constructor(searchedSelector: string) {
     super({ searchedSelector });
   }
@@ -10,8 +11,9 @@ export default class CssInput extends GameBlock {
     const input = document.createElement('input');
 
     form.onsubmit = this.handleSubmit;
-
+    this.form = form;
     form.append(input);
+
     return form;
   }
 
@@ -29,4 +31,8 @@ export default class CssInput extends GameBlock {
       }
     }
   };
+
+  public getForm() {
+    return this.form;
+  }
 }
