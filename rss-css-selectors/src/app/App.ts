@@ -26,7 +26,7 @@ export default class App {
     const cssInput = new CssInput(this.level.searchedSelector);
     const htmlMarkup = new HtmlMarkup(this.level.markup);
     const navigation = new Navigation(this.level.task, this.levelNum);
-    const controller = new Controller(gameBoard, htmlMarkup, this);
+    const controller = new Controller(gameBoard, htmlMarkup, cssInput, this);
     App.setControllers([gameBoard, navigation, htmlMarkup, cssInput], controller);
 
     document.body.append(
