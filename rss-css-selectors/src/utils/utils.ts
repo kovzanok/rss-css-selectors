@@ -27,3 +27,38 @@ export const getAllChildElements = (parentElement: HTMLElement): HTMLElement[] =
   });
   return resArr;
 };
+
+export const renderNestedMarkup = (
+  markupArr: string[],
+  renderElFunction: (el: string) => HTMLElement
+): HTMLElement[] => {
+  const res: HTMLElement[] = [];
+  let markupWrapperElement: HTMLElement;
+  let isNestedElement = false; //predicate indicates if markupWrapperElement has child elements
+
+  markupArr.forEach((el) => {
+    if (isNestedElement) {
+      if (el.includes('/>')) {
+        // check close tag of markupWrapperElement children
+        markupWrapperElement.append(renderElFunction(el));
+        return;
+      } else if (el.includes('</')) {
+        // check markupWrapperElement close tag
+        isNestedElement = false;
+        markupWrapperElement.append(el);
+        res.push(markupWrapperElement);
+        return;
+      }
+    }
+
+    if (!el.includes('</') && !el.includes('/>')) {
+      // check if tag contains closing slash
+      isNestedElement = true;
+      markupWrapperElement = renderElFunction(el);
+    } else {
+      markupWrapperElement = renderElFunction(el);
+      res.push(markupWrapperElement);
+    }
+  });
+  return res;
+};
