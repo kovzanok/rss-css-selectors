@@ -15,11 +15,10 @@ export const splitMarkupString: splitMarkupStringFunction = (markup) => {
     .map((el) => el.trim());
 };
 
-type findElementIndexFunction = (element: HTMLElement, elementList: HTMLCollection) => number;
+type findElementIndexFunction = (element: HTMLElement, elementList: HTMLElement[]) => number;
 
 export const findElementIndex: findElementIndexFunction = (element, elementList) => {
-  const elements = Array.from(elementList);
-  const index = elements.findIndex((el) => el === element);
+  const index = elementList.findIndex((el) => el === element);
   return index;
 };
 
