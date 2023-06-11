@@ -66,13 +66,18 @@ export default class Controller {
     const game = this.gameBoard.getGameField();
 
     game.querySelectorAll(typedSelector).forEach((el) => {
-      el.classList.add('shake');
       if (el instanceof HTMLElement) {
-        el.onanimationend = () => {
-          el.classList.remove('shake');
-        };
+        shakeElement(el);
       }
     });
+
+    const form = this.cssInput.getForm();
+    const htmlMarkup = this.htmlMarkup.getMarkupElement();
+
+    shakeElement(form);
+    shakeElement(htmlMarkup);
+  }
+
   public checkAnswer(typedSelector: string, taskSelector: string): boolean {
     const gameField = this.gameBoard.getGameField();
     const foundRes = gameField.querySelectorAll(typedSelector);
