@@ -73,5 +73,14 @@ export default class Controller {
         };
       }
     });
+  public checkAnswer(typedSelector: string, taskSelector: string): boolean {
+    const gameField = this.gameBoard.getGameField();
+    const foundRes = gameField.querySelectorAll(typedSelector);
+    const taskRes = gameField.querySelectorAll(taskSelector);
+    return (
+      Array.from(taskRes).every((el, index) => {
+        return el === foundRes[index];
+      }) && foundRes.length === taskRes.length
+    );
   }
 }
