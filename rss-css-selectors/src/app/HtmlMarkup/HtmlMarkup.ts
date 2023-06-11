@@ -10,8 +10,6 @@ export default class HtmlMarkup extends GameBlock {
   private renderTextWrapperElement(el: string): HTMLElement {
     const wrapper = document.createElement('div');
     wrapper.textContent = el;
-    wrapper.onmouseover = this.controller.handleHover;
-    wrapper.onmouseout = this.controller.handleHover;
     return wrapper;
   }
 
@@ -36,6 +34,8 @@ export default class HtmlMarkup extends GameBlock {
     }
 
     this.markupElement = div;
+    div.onmouseover = this.controller.handleHover;
+    div.onmouseout = this.controller.handleHover;
     return div;
   }
 
