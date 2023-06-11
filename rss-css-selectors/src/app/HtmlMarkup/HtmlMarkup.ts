@@ -7,6 +7,14 @@ export default class HtmlMarkup extends GameBlock {
     super({ markup });
   }
 
+  private renderMarkupElement(el: string): HTMLElement {
+    const wrapper = document.createElement('div');
+    wrapper.textContent = el;
+    wrapper.onmouseover = this.controller.handleHover;
+    wrapper.onmouseout = this.controller.handleHover;
+    return wrapper;
+  }
+
   public renderMarkup(): HTMLDivElement {
     const div = document.createElement('div');
     div.className = 'parent markup';
@@ -14,20 +22,12 @@ export default class HtmlMarkup extends GameBlock {
     if (this.markup) {
       const markupArr = splitMarkupString(this.markup);
 
-      const generateMarkupElement = (el: string): HTMLElement => {
-        const wrapper = document.createElement('div');
-        wrapper.textContent = el;
-        wrapper.onmouseover = this.controller.handleHover;
-        wrapper.onmouseout = this.controller.handleHover;
-        return wrapper;
-      };
-
       if (this.markup.includes('</')) {
         let markupElement: HTMLElement;
         let isNested = false;
         markupArr.forEach((el) => {
           if (isNested && el.includes('/>')) {
-            markupElement.append(generateMarkupElement(el));
+            markupElement.append(this.renderMarkupElement(el));
             return;
           } else if (isNested && el.includes('</')) {
             isNested = false;
@@ -38,15 +38,15 @@ export default class HtmlMarkup extends GameBlock {
 
           if (!el.includes('</') && !el.includes('/>')) {
             isNested = true;
-            markupElement = generateMarkupElement(el);
+            markupElement = this.renderMarkupElement(el);
           } else {
-            markupElement = generateMarkupElement(el);
+            markupElement = this.renderMarkupElement(el);
             div.append(markupElement);
           }
         });
       } else {
         markupArr.forEach((el) => {
-          div.append(generateMarkupElement(el));
+          div.append(this.renderMarkupElement(el));
         });
       }
 
