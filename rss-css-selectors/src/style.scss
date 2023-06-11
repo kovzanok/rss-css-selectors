@@ -23,6 +23,12 @@ apple {
       @include roundShape(rgb(97, 27, 27), 20px, 20px);
     }
   }
+
+  worm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
 }
 
 orange {
@@ -40,10 +46,19 @@ orange {
 }
 
 apple.highlighten,
-orange.highlighten {
+orange.highlighten,
+worm.highlighten   {
   border: 2px solid black;
 }
 
 .highlighten {
   font-weight: 700;
+}
+
+worm {
+  display: block;
+  width: 30px;
+  height: 20px;
+  border-radius: 5px;
+  background-color: brown;
 }
