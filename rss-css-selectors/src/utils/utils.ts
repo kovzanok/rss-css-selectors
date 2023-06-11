@@ -62,3 +62,10 @@ export const renderNestedMarkup = (
   });
   return res;
 };
+
+export const shakeElement = (el: HTMLElement): void => {
+  el.classList.add('shake');
+  el.onanimationend = () => {
+    el.classList.remove('shake');
+  };
+};
