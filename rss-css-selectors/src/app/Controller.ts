@@ -11,7 +11,11 @@ export default class Controller {
     const hoveredElement = e.target;
     if (hoveredElement && hoveredElement instanceof HTMLElement) {
       const parentElement = hoveredElement.closest('.parent');
-      if (parentElement && parentElement instanceof HTMLElement) {
+      if (
+        parentElement &&
+        parentElement instanceof HTMLElement &&
+        !hoveredElement.classList.contains('parent')
+      ) {
         const allChildrenArr = getAllChildElements(parentElement);
         const index = findElementIndex(hoveredElement, allChildrenArr);
         let relativeParent;
