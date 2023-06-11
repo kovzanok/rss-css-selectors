@@ -93,3 +93,60 @@ worm {
     width: 40px;
   }
 }
+
+.strobe {
+  transform-origin: bottom;
+  animation: strobeStart 0.5s ease-out, strobe 1s infinite;
+  animation-delay: 0s, 0.5s;
+}
+
+@keyframes strobeStart {
+  0% {
+    transform: skew(0deg, 0deg) scaleY(1);
+    animation-timing-function: ease-in;
+  }
+  40% {
+    transform: skew(0deg, 0deg) scaleY(0.9);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: skew(4deg, 0deg) scaleX(1);
+  }
+}
+
+@keyframes strobe {
+  0% {
+    transform: skew(4deg, 0deg) scaleX(1);
+  }
+  10% {
+    transform: skew(1deg, 0deg) scaleY(0.9);
+  }
+  50% {
+    transform: skew(-4deg, 0deg) scaleX(1);
+  }
+  60% {
+    transform: skew(-1deg, 0deg) scaleY(0.9);
+  }
+  100% {
+    transform: skew(4deg, 0deg) scaleX(1);
+  }
+}
+
+.shake {
+  animation: shake 0.1s 5;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
