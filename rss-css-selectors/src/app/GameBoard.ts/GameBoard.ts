@@ -47,7 +47,7 @@ export default class GameBoard extends GameBlock {
             game.innerHTML += wrapper;
             return;
           }
-      }
+        }
 
         if (!el.includes('</') && !el.includes('/>')) {
           // check if tag contains closing slash
