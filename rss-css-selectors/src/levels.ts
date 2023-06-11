@@ -63,4 +63,20 @@ export const levels: Level[] = [
       examples: `.neato selects all elements with class="neato"`,
     },
   },
+  {
+    searchedEl: 'worm',
+    markup: `
+    <apple>
+    <worm />
+    </apple>
+    <worm />`,
+    searchedSelector: 'apple worm',
+    task: {
+      taskName: 'Descendant Selector',
+      taskText: 'Select an element inside another element',
+      taskDescription:
+        'Selects all B inside of A. B is called a descendant because it is inside of another element.',
+      examples: `p  strong selects all strong elements that are inside of any p`,
+    },
+  },
 ];
