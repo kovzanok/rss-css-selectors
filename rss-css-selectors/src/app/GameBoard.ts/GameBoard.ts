@@ -31,16 +31,31 @@ export default class GameBoard extends GameBlock {
     game.className = 'parent game';
 
     if (this.markup) {
-      if (this.markup.includes('</')) {
-        game.innerHTML = this.markup.trim();
-      } else {
-        splitMarkupString(this.markup).forEach((markupEl) => (game.innerHTML += markupEl));
+      let wrapper = '';
+      let isNestedEl = false;
+
+      splitMarkupString(this.markup).forEach((el) => {
+        if (isNestedEl) {
+          if (el.includes('/>')) {
+            // check close tag of markupWrapperElement children
+            wrapper += el;
+            return;
+          } else if (el.includes('</')) {
+            // check markupWrapperElement close tag
+            isNestedEl = false;
+            wrapper += el;
+            game.innerHTML += wrapper;
+            return;
+          }
       }
 
-      Array.from(game.children).forEach((element) => {
-        if (element instanceof HTMLElement) {
-          element.onmouseover = this.controller.handleHover;
-          element.onmouseout = this.controller.handleHover;
+        if (!el.includes('</') && !el.includes('/>')) {
+          // check if tag contains closing slash
+          isNestedEl = true;
+          wrapper = el;
+        } else {
+          wrapper = el;
+          game.innerHTML += wrapper;
         }
       });
     }
