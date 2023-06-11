@@ -28,10 +28,21 @@ export default class GameBoard extends GameBlock {
 
   private renderGame(): HTMLDivElement {
     const game = document.createElement('div');
-    if (this.markup) {
-      const markupArr = splitMarkupString(this.markup);
+    game.className = 'parent game';
 
-      game.append(...markupArr.map((elMarkup) => this.renderGameElement(elMarkup)));
+    if (this.markup) {
+      if (this.markup.includes('</')) {
+        game.innerHTML = this.markup.trim();
+      } else {
+        splitMarkupString(this.markup).forEach((markupEl) => (game.innerHTML += markupEl));
+      }
+
+      Array.from(game.children).forEach((element) => {
+        if (element instanceof HTMLElement) {
+          element.onmouseover = this.controller.handleHover;
+          element.onmouseout = this.controller.handleHover;
+        }
+      });
     }
     return game;
   }
