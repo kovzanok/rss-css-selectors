@@ -1,11 +1,17 @@
-import { findElementIndex, getAllChildElements } from '../utils/utils';
+import { findElementIndex, getAllChildElements, shakeElement } from '../utils/utils';
 import App from './App';
 import GameBoard from './GameBoard.ts/GameBoard';
 import HtmlMarkup from './HtmlMarkup/HtmlMarkup';
 import { levels } from '../levels';
+import CssInput from './CssInput/CssInput';
 
 export default class Controller {
-  constructor(private gameBoard: GameBoard, private htmlMarkup: HtmlMarkup, private app: App) {}
+  constructor(
+    private gameBoard: GameBoard,
+    private htmlMarkup: HtmlMarkup,
+    private cssInput: CssInput,
+    private app: App
+  ) {}
 
   public handleHover = (e: Event) => {
     const hoveredElement = e.target;
