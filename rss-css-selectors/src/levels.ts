@@ -64,7 +64,7 @@ export const levels: Level[] = [
     },
   },
   {
-    searchedEl: 'worm',
+    searchedEl: 'worm in the apple',
     markup: `
     <apple>
     <worm />
