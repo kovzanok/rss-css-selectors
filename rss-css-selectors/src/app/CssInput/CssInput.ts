@@ -20,8 +20,12 @@ export default class CssInput extends GameBlock {
     const form = e.target;
     if (form instanceof HTMLFormElement) {
       const input = form.querySelector('input');
-      if (input && input.value === this.searchedSelector) {
-        this.controller.nextLevel();
+      if (input) {
+        if (input.value === this.searchedSelector) {
+          this.controller.nextLevel();
+        } else {
+          this.controller.handleWrongAnswer(input.value);
+        }
       }
     }
   };

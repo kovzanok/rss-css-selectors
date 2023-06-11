@@ -55,4 +55,17 @@ export default class Controller {
     this.app.levelNum -= 1;
     this.app.restart();
   };
+
+  public handleWrongAnswer(typedSelector: string) {
+    const game = this.gameBoard.getGameField();
+
+    game.querySelectorAll(typedSelector).forEach((el) => {
+      el.classList.add('shake');
+      if (el instanceof HTMLElement) {
+        el.onanimationend = () => {
+          el.classList.remove('shake');
+        };
+      }
+    });
+  }
 }
