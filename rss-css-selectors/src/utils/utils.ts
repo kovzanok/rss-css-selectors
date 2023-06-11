@@ -69,3 +69,11 @@ export const shakeElement = (el: HTMLElement): void => {
     el.classList.remove('shake');
   };
 };
+
+export const removeElement = (el: HTMLElement, callback: () => void): void => {
+  el.classList.add('clean');
+  el.onanimationend = () => {
+    el.classList.remove('clean');
+    callback();
+  };
+};
