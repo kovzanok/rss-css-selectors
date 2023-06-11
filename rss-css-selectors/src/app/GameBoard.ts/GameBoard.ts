@@ -58,6 +58,9 @@ export default class GameBoard extends GameBlock {
           game.innerHTML += wrapper;
         }
       });
+
+      game.onmouseover = this.controller.handleHover;
+      game.onmouseout = this.controller.handleHover;
     }
     return game;
   }
