@@ -46,11 +46,7 @@ export default class HtmlMarkup extends GameBlock {
         });
       } else {
         markupArr.forEach((el) => {
-          const wrapper = document.createElement('div');
-          wrapper.textContent = el;
-          wrapper.onmouseenter = this.controller.handleHover;
-          wrapper.onmouseleave = this.controller.handleHover;
-          div.append(wrapper);
+          div.append(generateMarkupElement(el));
         });
       }
 
