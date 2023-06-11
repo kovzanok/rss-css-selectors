@@ -7,7 +7,7 @@ export default class HtmlMarkup extends GameBlock {
     super({ markup });
   }
 
-  private renderMarkupElement(el: string): HTMLElement {
+  private renderTextWrapperElement(el: string): HTMLElement {
     const wrapper = document.createElement('div');
     wrapper.textContent = el;
     wrapper.onmouseover = this.controller.handleHover;
@@ -19,6 +19,7 @@ export default class HtmlMarkup extends GameBlock {
     const div = document.createElement('div');
     div.className = 'parent markup';
     div.textContent = '<div class="garden">';
+
     if (this.markup) {
       const markupArr = splitMarkupString(this.markup);
 
@@ -27,7 +28,7 @@ export default class HtmlMarkup extends GameBlock {
         let isNested = false;
         markupArr.forEach((el) => {
           if (isNested && el.includes('/>')) {
-            markupElement.append(this.renderMarkupElement(el));
+            markupElement.append(this.renderTextWrapperElement(el));
             return;
           } else if (isNested && el.includes('</')) {
             isNested = false;
@@ -38,15 +39,15 @@ export default class HtmlMarkup extends GameBlock {
 
           if (!el.includes('</') && !el.includes('/>')) {
             isNested = true;
-            markupElement = this.renderMarkupElement(el);
+            markupElement = this.renderTextWrapperElement(el);
           } else {
-            markupElement = this.renderMarkupElement(el);
+            markupElement = this.renderTextWrapperElement(el);
             div.append(markupElement);
           }
         });
       } else {
         markupArr.forEach((el) => {
-          div.append(this.renderMarkupElement(el));
+          div.append(this.renderTextWrapperElement(el));
         });
       }
 
