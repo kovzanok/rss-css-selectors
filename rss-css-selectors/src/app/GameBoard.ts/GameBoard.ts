@@ -47,23 +47,6 @@ export default class GameBoard extends GameBlock {
     return game;
   }
 
-  private renderGameElement(elementMarkup: string): HTMLElement {
-    const tagName = elementMarkup.slice(1, elementMarkup.indexOf(' '));
-
-    const element = document.createElement(tagName);
-    if (elementMarkup.includes('class')) {
-      element.className = getElementAttribute(elementMarkup, 'class');
-    }
-
-    if (elementMarkup.includes('id')) {
-      element.id = getElementAttribute(elementMarkup, 'id');
-    }
-
-    element.onmouseenter = this.controller.handleHover;
-    element.onmouseleave = this.controller.handleHover;
-    return element;
-  }
-
   public getGameField(): HTMLDivElement {
     return this.gameField;
   }
