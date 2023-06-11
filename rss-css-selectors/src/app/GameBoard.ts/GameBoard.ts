@@ -3,8 +3,8 @@ import { splitMarkupString } from '../../utils/utils';
 
 export default class GameBoard extends GameBlock {
   private gameField!: HTMLDivElement;
-  constructor(searchedEl: string, markup: string) {
-    super({ searchedEl, markup });
+  constructor(searchedEl: string, markup: string, searchedSelector: string) {
+    super({ searchedEl, markup, searchedSelector });
   }
 
   public renderBlock(): HTMLDivElement {
@@ -58,6 +58,11 @@ export default class GameBoard extends GameBlock {
           game.innerHTML += wrapper;
         }
       });
+      if (this.searchedSelector) {
+        game
+          .querySelectorAll(this.searchedSelector)
+          .forEach((elem) => elem.classList.add('strobe'));
+      }
 
       game.onmouseover = this.controller.handleHover;
       game.onmouseout = this.controller.handleHover;

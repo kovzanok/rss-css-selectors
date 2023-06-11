@@ -18,7 +18,11 @@ export default class App {
     };
   }
   start() {
-    const gameBoard = new GameBoard(this.level.searchedEl, this.level.markup);
+    const gameBoard = new GameBoard(
+      this.level.searchedEl,
+      this.level.markup,
+      this.level.searchedSelector
+    );
     const cssInput = new CssInput(this.level.searchedSelector);
     const htmlMarkup = new HtmlMarkup(this.level.markup);
     const navigation = new Navigation(this.level.task, this.levelNum);
