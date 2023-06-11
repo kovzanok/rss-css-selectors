@@ -50,11 +50,48 @@ export const levels: Level[] = [
   },
 
   {
-    searchedEl: 'green apple',
+    searchedEl: 'worm in the orange',
     markup: `
-    <apple class="green"/>
+    <orange>
+      <worm />
+    </orange>
+    <apple>
+      <worm />
+    </apple>
+    <worm />`,
+    searchedSelector: 'orange worm',
+    task: {
+      taskName: 'Descendant Selector',
+      taskText: 'Select an element inside another element',
+      taskDescription:
+        'Selects all B inside of A. B is called a descendant because it is inside of another element.',
+      examples: `p  strong selects all strong elements that are inside of any p`,
+    },
+  },
+  {
+    searchedEl: 'worm in the rotten apple',
+    markup: `
+    <orange>
+      <worm />
+    </orange>
+    <apple id="rotten">
+      <worm />
+    </apple>
+    <worm />`,
+    searchedSelector: '#rotten worm',
+    task: {
+      taskName: '',
+      taskText: 'Combine the Descendant & ID Selectors',
+      taskDescription: 'You can combine any selector with the descendent selector.',
+      examples: `#cool span selects all span elements that are inside of elements with id="cool"`,
+    },
+  },
+  {
+    searchedEl: 'small apple',
+    markup: `
+    <apple class="small"/>
     <apple />`,
-    searchedSelector: '.green',
+    searchedSelector: '.small',
     task: {
       taskName: 'Class Selector',
       taskText: 'Select elements by their class',
@@ -64,19 +101,22 @@ export const levels: Level[] = [
     },
   },
   {
-    searchedEl: 'worm in the apple',
+    searchedEl: 'small apple',
     markup: `
-    <apple>
-    <worm />
+    
+    <apple >
+      <worm class="small"/>
     </apple>
-    <worm />`,
-    searchedSelector: 'apple worm',
+    <apple class="small" />
+    <orange class="small" />`,
+    searchedSelector: 'apple.small',
     task: {
-      taskName: 'Descendant Selector',
-      taskText: 'Select an element inside another element',
+      taskName: '',
+      taskText: 'Combine the Class Selector',
       taskDescription:
-        'Selects all B inside of A. B is called a descendant because it is inside of another element.',
-      examples: `p  strong selects all strong elements that are inside of any p`,
+        'You can combine the class selector with other selectors, like the type selector.',
+      examples: `ul.important selects all ul elements that have class="important"
+      #big.wide selects all elements with id="big" that also have class="wide"`,
     },
   },
 ];
