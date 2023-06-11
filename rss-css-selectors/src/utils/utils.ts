@@ -22,3 +22,17 @@ export const findElementIndex: findElementIndexFunction = (element, elementList)
   const index = elements.findIndex((el) => el === element);
   return index;
 };
+
+export const getAllChildElements = (parentElement: HTMLElement): HTMLElement[] => {
+  const childrenArr = Array.from(parentElement.children);
+  const resArr: HTMLElement[] = [];
+  childrenArr.forEach((el) => {
+    if (el instanceof HTMLElement) {
+      resArr.push(el);
+      if (el.childElementCount !== 0) {
+        resArr.push(...getAllChildElements(el));
+      }
+    }
+  });
+  return resArr;
+};
