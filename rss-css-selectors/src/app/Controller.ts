@@ -1,4 +1,4 @@
-import { findElementIndex, getAllChildElements, shakeElement } from '../utils/utils';
+import { findElementIndex, getAllChildElements, removeElement, shakeElement } from '../utils/utils';
 import App from './App';
 import GameBoard from './GameBoard.ts/GameBoard';
 import HtmlMarkup from './HtmlMarkup/HtmlMarkup';
@@ -42,6 +42,11 @@ export default class Controller {
       }
     }
   };
+
+  public removeGameField(): void {
+    const game = this.gameBoard.getGameField();
+    removeElement(game, this.nextLevel.bind(this));
+  }
 
   public nextLevel = () => {
     if (!this.isWin()) {
