@@ -13,7 +13,6 @@ export default class Controller {
       const parentElement = hoveredElement.closest('.parent');
       if (parentElement && parentElement instanceof HTMLElement) {
         const allChildrenArr = getAllChildElements(parentElement);
-        console.log(allChildrenArr);
         const index = findElementIndex(hoveredElement, allChildrenArr);
         let relativeParent;
         if (parentElement.classList.contains('markup')) {
