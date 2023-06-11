@@ -23,20 +23,36 @@ apple {
       @include roundShape(rgb(97, 27, 27), 20px, 20px);
     }
   }
-
-  worm {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-  }
 }
 
 orange {
   @include roundShapeFruit(orange);
+
+  opacity: 0.8;
+  background-image: linear-gradient(135deg, #ff7b00 25%, transparent 25%),
+    linear-gradient(225deg, #ff7b00 25%, transparent 25%),
+    linear-gradient(45deg, #ff7b00 25%, transparent 25%),
+    linear-gradient(315deg, #ff7b00 25%, #df7100 25%);
+  background-position: 6px 0, 6px 0, 0 0, 0 0;
+  background-size: 6px 6px;
+  background-repeat: repeat;
 }
 
-.green {
-  background-color: green;
+apple,
+orange {
+  worm {
+    z-index: 2;
+    width: 40px;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translateY(-50%);
+  }
+}
+
+.small {
+  width: 30px;
+  height: 30px;
 }
 
 .markup {
@@ -47,8 +63,8 @@ orange {
 
 apple.highlighten,
 orange.highlighten,
-worm.highlighten   {
-  border: 2px solid black;
+worm.highlighten {
+  box-shadow: 0px 0px 10px rgb(0, 0, 0);
 }
 
 .highlighten {
@@ -56,9 +72,24 @@ worm.highlighten   {
 }
 
 worm {
+  border: 1px solid black;
   display: block;
-  width: 30px;
-  height: 20px;
+  width: 70px;
+  height: 10px;
   border-radius: 5px;
-  background-color: brown;
+  background-color: #df7100;
+  opacity: 1;
+  background-size: 12px 12px;
+  background-image: repeating-linear-gradient(
+    to right,
+    #86572a,
+    #86572a 0.6000000000000001px,
+    #df7100 0.6000000000000001px,
+    #df7100
+  );
+
+  &.small {
+    height: 5px;
+    width: 40px;
+  }
 }
