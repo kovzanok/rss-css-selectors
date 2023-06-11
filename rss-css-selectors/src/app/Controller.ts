@@ -1,4 +1,4 @@
-import { findElementIndex } from '../utils/utils';
+import { findElementIndex, getAllChildElements } from '../utils/utils';
 import App from './App';
 import GameBoard from './GameBoard.ts/GameBoard';
 import HtmlMarkup from './HtmlMarkup/HtmlMarkup';
@@ -9,22 +9,24 @@ export default class Controller {
 
   public handleHover = (e: Event) => {
     const hoveredElement = e.target;
-
     if (hoveredElement && hoveredElement instanceof HTMLElement) {
-      const parentElement = hoveredElement.parentElement;
-      if (parentElement) {
-        const index = findElementIndex(hoveredElement, parentElement.children);
+      const parentElement = hoveredElement.closest('.parent');
+      if (parentElement && parentElement instanceof HTMLElement) {
+        const allChildrenArr = getAllChildElements(parentElement);
+        console.log(allChildrenArr);
+        const index = findElementIndex(hoveredElement, allChildrenArr);
         let relativeParent;
         if (parentElement.classList.contains('markup')) {
           relativeParent = this.gameBoard.getGameField();
         } else {
           relativeParent = this.htmlMarkup.getMarkupElement();
         }
-        const relativeEl = relativeParent.children[index];
-        if (e.type === 'mouseenter') {
+        const allChildrenRelArr = getAllChildElements(relativeParent);
+        const relativeEl = allChildrenRelArr[index];
+        if (e.type === 'mouseover') {
           relativeEl.classList.add('highlighten');
           hoveredElement.classList.add('highlighten');
-        } else if (e.type === 'mouseleave') {
+        } else if (e.type === 'mouseout') {
           relativeEl.classList.remove('highlighten');
           hoveredElement.classList.remove('highlighten');
         }
