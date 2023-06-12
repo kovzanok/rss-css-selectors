@@ -20,12 +20,12 @@ export default class Model {
     private app: App
   ) {}
 
-  public hightlightElements(relativeEl: HTMLElement, hoveredElement: HTMLElement): void {
+  public static hightlightElements(relativeEl: HTMLElement, hoveredElement: HTMLElement): void {
     relativeEl.classList.add('highlighten');
     hoveredElement.classList.add('highlighten');
   }
 
-  public removeHightlight(relativeEl: HTMLElement, hoveredElement: HTMLElement): void {
+  public static removeHightlight(relativeEl: HTMLElement, hoveredElement: HTMLElement): void {
     relativeEl.classList.remove('highlighten');
     hoveredElement.classList.remove('highlighten');
   }

@@ -24,9 +24,9 @@ export default class Controller {
       ) {
         const relativeEl = this.model.findHoveredRelative(parentElement, hoveredElement);
         if (e.type === 'mouseover') {
-          this.model.hightlightElements(relativeEl, hoveredElement);
+          Model.hightlightElements(relativeEl, hoveredElement);
         } else if (e.type === 'mouseout') {
-          this.model.removeHightlight(relativeEl, hoveredElement);
+          Model.removeHightlight(relativeEl, hoveredElement);
         }
       }
     }
