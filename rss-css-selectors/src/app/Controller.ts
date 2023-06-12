@@ -69,12 +69,13 @@ export default class Controller {
 
   public handleWrongAnswer(typedSelector: string) {
     const game = this.gameBoard.getGameField();
-
-    game.querySelectorAll(typedSelector).forEach((el) => {
-      if (el instanceof HTMLElement) {
-        shakeElement(el);
-      }
-    });
+    if (typedSelector.length !== 0) {
+      game.querySelectorAll(typedSelector).forEach((el) => {
+        if (el instanceof HTMLElement) {
+          shakeElement(el);
+        }
+      });
+    }
 
     const form = this.cssInput.getForm();
     const htmlMarkup = this.htmlMarkup.getMarkupElement();
@@ -85,6 +86,7 @@ export default class Controller {
 
   public checkAnswer(typedSelector: string, taskSelector: string): boolean {
     const gameField = this.gameBoard.getGameField();
+    if (typedSelector.length === 0) return false;
     const foundRes = gameField.querySelectorAll(typedSelector);
     const taskRes = gameField.querySelectorAll(taskSelector);
     return (
