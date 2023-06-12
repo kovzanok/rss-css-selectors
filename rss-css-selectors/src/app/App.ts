@@ -7,6 +7,8 @@ import Controller from './Controller';
 import GameBlock from '../utils/GameBlock';
 import Navigation from './Navigation/Navigation';
 import './App.scss';
+import Model from './Model';
+import { introduceModelAndController } from '../utils/utils';
 
 export default class App {
   private level: Level;
@@ -32,7 +34,9 @@ export default class App {
     const cssInput = new CssInput(this.level.searchedSelector);
     const htmlMarkup = new HtmlMarkup(this.level.markup);
     const navigation = new Navigation(this.level.task, this.levelNum);
+    const model = new Model(gameBoard, htmlMarkup, cssInput, this);
     const controller = new Controller(gameBoard, htmlMarkup, cssInput, this);
+    introduceModelAndController(model, controller);
     App.setControllers([gameBoard, navigation, htmlMarkup, cssInput], controller);
 
     this.gameContainer.append(

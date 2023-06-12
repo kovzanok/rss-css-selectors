@@ -4,8 +4,10 @@ import GameBoard from './GameBoard.ts/GameBoard';
 import HtmlMarkup from './HtmlMarkup/HtmlMarkup';
 import { levels } from '../levels';
 import CssInput from './CssInput/CssInput';
+import Model from './Model';
 
 export default class Controller {
+  private model!: Model;
   constructor(
     private gameBoard: GameBoard,
     private htmlMarkup: HtmlMarkup,
@@ -94,5 +96,9 @@ export default class Controller {
         return el === foundRes[index];
       }) && foundRes.length === taskRes.length
     );
+  }
+
+  public setModel(model: Model) {
+    this.model = model;
   }
 }
