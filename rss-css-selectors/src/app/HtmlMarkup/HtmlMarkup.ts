@@ -1,46 +1,50 @@
 import GameBlock from '../../utils/GameBlock';
-import { renderNestedMarkup, splitMarkupString } from '../../utils/utils';
+import { createElement, renderNestedMarkup, splitMarkupString } from '../../utils/utils';
 import './HtmlMarkup.scss';
 
 export default class HtmlMarkup extends GameBlock {
-  private markupElement!: HTMLDivElement;
+  private markupElement!: HTMLElement;
   constructor(markup: string) {
     super({ markup });
   }
 
-  private renderTextWrapperElement(el: string): HTMLElement {
-    const wrapper = document.createElement('div');
-    wrapper.textContent = el;
+  private renderTextWrapperElement(text: string): HTMLElement {
+    const wrapper = createElement({ tag: 'div', textContent: text });
     return wrapper;
   }
 
-  public renderMarkup(): HTMLDivElement {
-    const div = document.createElement('div');
-    div.className = 'parent markup';
-    div.textContent = '<div class="garden">';
+  public renderMarkup(): HTMLElement {
+    const markup = createElement({
+      tag: 'div',
+      className: 'parent markup',
+      textContent: '<div class="garden">',
+      eventHandlers: {
+        mouseover: this.controller.handleHover,
+        mouseout: this.controller.handleHover,
+      },
+    });
 
     if (this.markup) {
       const markupArr = splitMarkupString(this.markup);
 
       if (this.markup.includes('</')) {
         // check if total markup has nested tags like <tag>...</tag>
-        div.append(...renderNestedMarkup(markupArr, this.renderTextWrapperElement.bind(this)));
+        markup.append(...renderNestedMarkup(markupArr, this.renderTextWrapperElement.bind(this)));
       } else {
         markupArr.forEach((el) => {
-          div.append(this.renderTextWrapperElement(el));
+          markup.append(this.renderTextWrapperElement(el));
         });
       }
 
-      div.append('</div>');
+      markup.append('</div>');
     }
 
-    this.markupElement = div;
-    div.onmouseover = this.controller.handleHover;
-    div.onmouseout = this.controller.handleHover;
-    return div;
+    this.markupElement = markup;
+
+    return markup;
   }
 
-  public getMarkupElement(): HTMLDivElement {
+  public getMarkupElement(): HTMLElement {
     return this.markupElement;
   }
 }
