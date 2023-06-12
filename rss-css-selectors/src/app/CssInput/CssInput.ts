@@ -1,26 +1,37 @@
 import GameBlock from '../../utils/GameBlock';
+import { createElement } from '../../utils/utils';
 import './CssInput.scss';
 
 export default class CssInput extends GameBlock {
-  private form!: HTMLFormElement;
+  private form!: HTMLElement;
   constructor(searchedSelector: string) {
     super({ searchedSelector });
   }
 
-  public renderInputForm(): HTMLFormElement {
-    const form = document.createElement('form');
-    form.className = 'css-form';
-    const input = document.createElement('input');
-    input.placeholder = 'Type your selector';
-    input.autofocus = true;
-    input.onblur = () => input.focus();
-    input.className = 'css-input';
+  public renderInputForm(): HTMLElement {
+    const form = createElement({
+      tag: 'form',
+      className: 'css-form',
+      eventHandlers: { submit: this.handleSubmit },
+    });
 
-    const button = document.createElement('button');
-    button.textContent = 'Enter';
-    button.className = 'css-submit';
+    const input = createElement({
+      tag: 'input',
+      attributes: {
+        placeholder: 'Type your selector',
+        autofocus: 'true',
+      },
+      className: 'css-input',
+      eventHandlers: {
+        blur: (e) => {
+          const input = e.target as HTMLInputElement;
+          input.focus();
+        },
+      },
+    });
 
-    form.onsubmit = this.handleSubmit;
+    const button = createElement({ tag: 'button', className: 'css-submit', textContent: 'Enter' });
+
     this.form = form;
     form.append(input, button);
 
