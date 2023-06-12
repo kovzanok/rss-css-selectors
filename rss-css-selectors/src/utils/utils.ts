@@ -74,12 +74,23 @@ export const shakeElement = (el: HTMLElement): void => {
   };
 };
 
-export const removeElement = (el: HTMLElement, callback: () => void): void => {
-  el.classList.add('clean');
-  el.onanimationend = () => {
-    el.classList.remove('clean');
-    callback();
-  };
+export const removeSpecialElements = (
+  el: HTMLElement,
+  selector: string,
+  callback: () => void
+): void => {
+  const childrenToRemove = el.querySelectorAll(selector);
+  childrenToRemove.forEach((child, index) => {
+    if (child instanceof HTMLElement) {
+      child.classList.add('clean');
+      child.onanimationend = () => {
+        child.classList.remove('clean');
+        if (index === childrenToRemove.length - 1) {
+          callback();
+        }
+      };
+    }
+  });
 };
 
 export const createElement = <T extends HTMLElement>(params: ElementCreationParams): T => {
