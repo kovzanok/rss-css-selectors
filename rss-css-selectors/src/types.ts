@@ -18,7 +18,7 @@ type EventHandlersType = {
 
 export type ElementCreationParams = {
   tag: string;
-  className: string;
+  className?: string;
   textContent?: string;
   eventHandlers?: EventHandlersType;
 };

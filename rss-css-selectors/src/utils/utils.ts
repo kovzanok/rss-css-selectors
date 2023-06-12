@@ -82,7 +82,10 @@ export const removeElement = (el: HTMLElement, callback: () => void): void => {
 
 export const createElement = (params: ElementCreationParams): HTMLElement => {
   const element = document.createElement(params.tag);
-  element.className = params.className;
+  if (params.className) {
+    element.className = params.className;
+  }
+
   if (params.textContent) {
     element.textContent = params.textContent;
   }
