@@ -9,16 +9,20 @@ export default class CssInput extends GameBlock {
 
   public renderInputForm(): HTMLFormElement {
     const form = document.createElement('form');
+    form.className = 'css-form';
     const input = document.createElement('input');
+    input.placeholder = 'Type your selector';
     input.autofocus = true;
     input.onblur = () => input.focus();
+    input.className = 'css-input';
+
     const button = document.createElement('button');
     button.textContent = 'Enter';
     button.className = 'css-submit';
 
     form.onsubmit = this.handleSubmit;
     this.form = form;
-    form.append(input);
+    form.append(input, button);
 
     return form;
   }
