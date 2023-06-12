@@ -8,14 +8,15 @@ export default class GameBoard extends GameBlock {
     super({ searchedEl, markup, searchedSelector });
   }
 
-  public renderBlock(): HTMLDivElement {
-    const gameBoard = document.createElement('div');
-    gameBoard.className = 'board';
+  public renderBoardElements(): HTMLDivElement {
+    const board = document.createElement('div');
+    board.className = 'board';
 
     const title = this.renderTaskTitle();
     this.gameField = this.renderGame();
-    gameBoard.append(title, this.gameField);
-    return gameBoard;
+
+    board.append(title, this.gameField);
+    return board;
   }
 
   private renderTaskTitle(): HTMLHeadingElement {
