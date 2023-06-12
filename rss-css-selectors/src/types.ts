@@ -22,6 +22,7 @@ type AttributeObjType = {
 
 export type ElementCreationParams = {
   tag: string;
+  disabled?:boolean;
   attributes?: AttributeObjType;
   className?: string;
   textContent?: string;
