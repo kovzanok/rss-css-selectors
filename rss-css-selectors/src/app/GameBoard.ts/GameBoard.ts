@@ -20,6 +20,8 @@ export default class GameBoard extends GameBlock {
 
   private renderTaskTitle(): HTMLHeadingElement {
     const title = document.createElement('h1');
+    title.className = 'board__title';
+
     if (this.searchedEl) {
       title.textContent = `Select the ${this.searchedEl}`;
     }
@@ -29,7 +31,7 @@ export default class GameBoard extends GameBlock {
 
   private renderGame(): HTMLDivElement {
     const game = document.createElement('div');
-    game.className = 'parent game';
+    game.className = 'parent board__field';
 
     if (this.markup) {
       let wrapper = '';
