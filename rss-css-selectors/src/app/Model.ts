@@ -1,4 +1,10 @@
-import { findElementIndex, getAllChildElements } from '../utils/utils';
+import { levels } from '../levels';
+import {
+  findElementIndex,
+  getAllChildElements,
+  removeSpecialElements,
+  shakeElement,
+} from '../utils/utils';
 import App from './App';
 import Controller from './Controller';
 import CssInput from './CssInput/CssInput';
@@ -40,5 +46,62 @@ export default class Model {
 
   public setController(controller: Controller) {
     this.controller = controller;
+  }
+
+  public checkAnswer(typedSelector: string, taskSelector: string): boolean {
+    const gameField = this.gameBoard.getGameField();
+    if (typedSelector.length === 0) return false;
+    const foundRes = gameField.querySelectorAll(typedSelector);
+    const taskRes = gameField.querySelectorAll(taskSelector);
+    return (
+      Array.from(taskRes).every((el, index) => {
+        return el === foundRes[index];
+      }) && foundRes.length === taskRes.length
+    );
+  }
+
+  public handleWrongAnswer(typedSelector: string) {
+    const game = this.gameBoard.getGameField();
+    if (typedSelector.length !== 0) {
+      game.querySelectorAll(typedSelector).forEach((el) => {
+        if (el instanceof HTMLElement) {
+          shakeElement(el);
+        }
+      });
+    }
+
+    const form = this.cssInput.getForm();
+    const htmlMarkup = this.htmlMarkup.getMarkupElement();
+
+    shakeElement(form);
+    shakeElement(htmlMarkup);
+  }
+
+  public removeGameField(): void {
+    const game = this.gameBoard.getGameField();
+    removeSpecialElements(
+      game,
+      this.cssInput.searchedSelector as string,
+      this.nextLevel.bind(this)
+    );
+  }
+
+  public nextLevel = () => {
+    if (!this.isWin()) {
+      this.app.levelNum += 1;
+    } else {
+      this.app.levelNum = 0;
+      alert('Игра пройдена');
+    }
+    this.app.restart();
+  };
+
+  public prevLevel = () => {
+    this.app.levelNum -= 1;
+    this.app.restart();
+  };
+  private isWin() {
+    //Change win condition according to user progress
+    return this.app.levelNum === levels.length - 1;
   }
 }

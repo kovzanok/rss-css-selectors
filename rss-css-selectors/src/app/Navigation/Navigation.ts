@@ -25,8 +25,6 @@ export default class Navigation extends GameBlock {
   private renderControls(): HTMLButtonElement[] {
     const controls = ['prev-lvl', 'next-lvl'];
     return controls.map((control: string): HTMLButtonElement => {
-      const callback =
-        control === 'prev-lvl' ? this.controller.prevLevel : this.controller.nextLevel;
       const isDisabled =
         (control === 'prev-lvl' && this.levelNum === 0) ||
         (control === 'next-lvl' && this.levelNum === levels.length - 1);
@@ -35,7 +33,7 @@ export default class Navigation extends GameBlock {
         className: control,
         disabled: isDisabled,
         textContent: control,
-        eventHandlers: { click: callback },
+        eventHandlers: { click: this.controller.handleLevelChange },
       });
       return button;
     });

@@ -12,7 +12,7 @@ export default class CssInput extends GameBlock {
     const form = createElement<HTMLFormElement>({
       tag: 'form',
       className: 'css-form',
-      eventHandlers: { submit: this.handleSubmit },
+      eventHandlers: { submit: this.controller.handleSubmit },
     });
 
     const input = createElement<HTMLInputElement>({
@@ -41,21 +41,6 @@ export default class CssInput extends GameBlock {
 
     return form;
   }
-
-  private handleSubmit = (e: Event) => {
-    e.preventDefault();
-    const form = e.target;
-    if (form instanceof HTMLFormElement) {
-      const input = form.querySelector('input');
-      if (input && this.searchedSelector) {
-        if (this.controller.checkAnswer(input.value, this.searchedSelector)) {
-          this.controller.removeGameField();
-        } else {
-          this.controller.handleWrongAnswer(input.value);
-        }
-      }
-    }
-  };
 
   public getForm(): HTMLFormElement {
     return this.form;
