@@ -36,41 +36,11 @@ export default class GameBoard extends GameBlock {
     });
 
     if (this.markup) {
-      let wrapper = '';
-      let isNestedEl = false;
-
-      splitMarkupString(this.markup).forEach((el) => {
-        if (isNestedEl) {
-          if (el.includes('/>')) {
-            // check close tag of markupWrapperElement children
-            wrapper += el;
-            return;
-          } else if (el.includes('</')) {
-            // check markupWrapperElement close tag
-            isNestedEl = false;
-            wrapper += el;
-            game.innerHTML += wrapper;
-            return;
-          }
-        }
-
-        if (!el.includes('</') && !el.includes('/>')) {
-          // check if tag contains closing slash
-          isNestedEl = true;
-          wrapper = el;
-        } else {
-          wrapper = el;
-          game.innerHTML += wrapper;
-        }
-      });
-      if (this.searchedSelector) {
-        game
-          .querySelectorAll(this.searchedSelector)
-          .forEach((elem) => elem.classList.add('strobe'));
-      }
-
-      game.onmouseover = this.controller.handleHover;
-      game.onmouseout = this.controller.handleHover;
+      const markupArr = splitMarkupString(this.markup);
+      renderNestedElements(markupArr, game);
+    }
+    if (this.searchedSelector) {
+      game.querySelectorAll(this.searchedSelector).forEach((elem) => elem.classList.add('strobe'));
     }
     return game;
   }

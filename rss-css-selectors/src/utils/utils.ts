@@ -1,4 +1,5 @@
 import { ElementCreationParams } from '../types';
+
 type splitMarkupStringFunction = (markup: string) => string[];
 
 export const splitMarkupString: splitMarkupStringFunction = (markup) => {
@@ -91,4 +92,34 @@ export const createElement = (params: ElementCreationParams): HTMLElement => {
     }
   }
   return element;
+};
+
+export const renderNestedElements = (markupArr: string[], parentElement: HTMLElement): void => {
+  let wrapper = '';
+  let isNestedEl = false;
+
+  markupArr.forEach((el) => {
+    if (isNestedEl) {
+      if (el.includes('/>')) {
+        // check close tag of markupWrapperElement children
+        wrapper += el;
+        return;
+      } else if (el.includes('</')) {
+        // check markupWrapperElement close tag
+        isNestedEl = false;
+        wrapper += el;
+        parentElement.innerHTML += wrapper;
+        return;
+      }
+    }
+
+    if (!el.includes('</') && !el.includes('/>')) {
+      // check if tag contains closing slash
+      isNestedEl = true;
+      wrapper = el;
+    } else {
+      wrapper = el;
+      parentElement.innerHTML += wrapper;
+    }
+  });
 };
