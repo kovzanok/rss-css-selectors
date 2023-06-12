@@ -6,16 +6,22 @@ import HtmlMarkup from './HtmlMarkup/HtmlMarkup';
 import Controller from './Controller';
 import GameBlock from '../utils/GameBlock';
 import Navigation from './Navigation/Navigation';
+import './App.scss';
 
 export default class App {
   private level: Level;
   public levelNum: number;
+  private gameContainer: HTMLDivElement;
+  private menuContainer: HTMLDivElement;
+
   constructor() {
     this.levelNum = Number(window.localStorage.getItem('rss-css-selector-lvl'));
     this.level = levels[this.levelNum];
     window.onunload = () => {
       localStorage.setItem('rss-css-selector-lvl', String(this.levelNum));
     };
+    this.gameContainer = document.querySelector('.game-container') as HTMLDivElement;
+    this.menuContainer = document.querySelector('.menu-container') as HTMLDivElement;
   }
   start() {
     const gameBoard = new GameBoard(
@@ -29,18 +35,21 @@ export default class App {
     const controller = new Controller(gameBoard, htmlMarkup, cssInput, this);
     App.setControllers([gameBoard, navigation, htmlMarkup, cssInput], controller);
 
-    document.body.append(
-      navigation.renderNavigation(),
-      gameBoard.renderBlock(),
+    this.gameContainer.append(
+      gameBoard.renderBoardElements(),
       cssInput.renderInputForm(),
       htmlMarkup.renderMarkup()
     );
+
+    this.menuContainer.append(navigation.renderNavigation());
 
     console.log('start app');
   }
 
   public restart() {
-    document.body.innerHTML = '';
+    this.gameContainer.innerHTML = '';
+    this.menuContainer.innerHTML = '';
+
     this.level = levels[this.levelNum];
     this.start();
   }
