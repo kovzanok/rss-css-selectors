@@ -12,4 +12,7 @@ export default class Model {
     private app: App
   ) {}
 
+  public setController(controller: Controller) {
+    this.controller = controller;
+  }
 }
