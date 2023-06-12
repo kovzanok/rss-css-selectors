@@ -1,5 +1,6 @@
 import GameBlock from '../../utils/GameBlock';
 import { renderNestedMarkup, splitMarkupString } from '../../utils/utils';
+import './HtmlMarkup.scss';
 
 export default class HtmlMarkup extends GameBlock {
   private markupElement!: HTMLDivElement;

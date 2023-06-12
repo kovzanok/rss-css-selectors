@@ -1,4 +1,5 @@
 import GameBlock from '../../utils/GameBlock';
+import './CssInput.scss';
 
 export default class CssInput extends GameBlock {
   private form!: HTMLFormElement;

@@ -1,5 +1,6 @@
 import GameBlock from '../../utils/GameBlock';
 import { splitMarkupString } from '../../utils/utils';
+import './GameBoard.scss';
 
 export default class GameBoard extends GameBlock {
   private gameField!: HTMLDivElement;
