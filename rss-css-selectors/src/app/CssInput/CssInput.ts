@@ -3,19 +3,19 @@ import { createElement } from '../../utils/utils';
 import './CssInput.scss';
 
 export default class CssInput extends GameBlock {
-  private form!: HTMLElement;
+  private form!: HTMLFormElement;
   constructor(searchedSelector: string) {
     super({ searchedSelector });
   }
 
-  public renderInputForm(): HTMLElement {
-    const form = createElement({
+  public renderInputForm(): HTMLFormElement {
+    const form = createElement<HTMLFormElement>({
       tag: 'form',
       className: 'css-form',
       eventHandlers: { submit: this.handleSubmit },
     });
 
-    const input = createElement({
+    const input = createElement<HTMLInputElement>({
       tag: 'input',
       attributes: {
         placeholder: 'Type your selector',
@@ -30,7 +30,11 @@ export default class CssInput extends GameBlock {
       },
     });
 
-    const button = createElement({ tag: 'button', className: 'css-submit', textContent: 'Enter' });
+    const button = createElement<HTMLButtonElement>({
+      tag: 'button',
+      className: 'css-submit',
+      textContent: 'Enter',
+    });
 
     this.form = form;
     form.append(input, button);
@@ -53,7 +57,7 @@ export default class CssInput extends GameBlock {
     }
   };
 
-  public getForm() {
+  public getForm(): HTMLFormElement {
     return this.form;
   }
 }

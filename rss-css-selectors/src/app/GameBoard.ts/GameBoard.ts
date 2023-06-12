@@ -3,16 +3,16 @@ import { createElement, renderNestedElements, splitMarkupString } from '../../ut
 import './GameBoard.scss';
 
 export default class GameBoard extends GameBlock {
-  private gameField!: HTMLElement;
+  private gameField!: HTMLDivElement;
   constructor(searchedEl: string, markup: string, searchedSelector: string) {
     super({ searchedEl, markup, searchedSelector });
   }
 
-  public renderBoardElements(): HTMLElement {
-    const board = createElement({ tag: 'div', className: 'board' });
+  public renderBoardElements(): HTMLDivElement {
+    const board = createElement<HTMLDivElement>({ tag: 'div', className: 'board' });
 
     if (this.searchedEl) {
-      const title = createElement({
+      const title = createElement<HTMLHeadingElement>({
         tag: 'h1',
         className: 'board__title',
         textContent: `Select the ${this.searchedEl}`,
@@ -25,8 +25,8 @@ export default class GameBoard extends GameBlock {
     return board;
   }
 
-  private renderGame(): HTMLElement {
-    const game = createElement({
+  private renderGame(): HTMLDivElement {
+    const game = createElement<HTMLDivElement>({
       tag: 'div',
       className: 'parent board__field',
       eventHandlers: {
@@ -45,7 +45,7 @@ export default class GameBoard extends GameBlock {
     return game;
   }
 
-  public getGameField(): HTMLElement {
+  public getGameField(): HTMLDivElement {
     return this.gameField;
   }
 }

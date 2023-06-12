@@ -3,18 +3,18 @@ import { createElement, renderNestedMarkup, splitMarkupString } from '../../util
 import './HtmlMarkup.scss';
 
 export default class HtmlMarkup extends GameBlock {
-  private markupElement!: HTMLElement;
+  private markupElement!: HTMLDivElement;
   constructor(markup: string) {
     super({ markup });
   }
 
-  private renderTextWrapperElement(text: string): HTMLElement {
-    const wrapper = createElement({ tag: 'div', textContent: text });
+  private renderTextWrapperElement(text: string): HTMLDivElement {
+    const wrapper = createElement<HTMLDivElement>({ tag: 'div', textContent: text });
     return wrapper;
   }
 
-  public renderMarkup(): HTMLElement {
-    const markup = createElement({
+  public renderMarkup(): HTMLDivElement {
+    const markup = createElement<HTMLDivElement>({
       tag: 'div',
       className: 'parent markup',
       textContent: '<div class="garden">',
@@ -44,7 +44,7 @@ export default class HtmlMarkup extends GameBlock {
     return markup;
   }
 
-  public getMarkupElement(): HTMLElement {
+  public getMarkupElement(): HTMLDivElement {
     return this.markupElement;
   }
 }
