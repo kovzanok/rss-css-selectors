@@ -1,3 +1,4 @@
+import { ElementCreationParams } from '../types';
 type splitMarkupStringFunction = (markup: string) => string[];
 
 export const splitMarkupString: splitMarkupStringFunction = (markup) => {
@@ -76,4 +77,18 @@ export const removeElement = (el: HTMLElement, callback: () => void): void => {
     el.classList.remove('clean');
     callback();
   };
+};
+
+export const createElement = (params: ElementCreationParams): HTMLElement => {
+  const element = document.createElement(params.tag);
+  element.className = params.className;
+  if (params.textContent) {
+    element.textContent = params.textContent;
+  }
+  if (params.eventHandlers) {
+    for (const [key, value] of Object.entries(params.eventHandlers)) {
+      element.addEventListener(key, value);
+    }
+  }
+  return element;
 };

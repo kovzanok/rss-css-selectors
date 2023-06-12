@@ -1,38 +1,39 @@
 import GameBlock from '../../utils/GameBlock';
-import { splitMarkupString } from '../../utils/utils';
+import { createElement, renderNestedElements, splitMarkupString } from '../../utils/utils';
 import './GameBoard.scss';
 
 export default class GameBoard extends GameBlock {
-  private gameField!: HTMLDivElement;
+  private gameField!: HTMLElement;
   constructor(searchedEl: string, markup: string, searchedSelector: string) {
     super({ searchedEl, markup, searchedSelector });
   }
 
-  public renderBoardElements(): HTMLDivElement {
-    const board = document.createElement('div');
-    board.className = 'board';
+  public renderBoardElements(): HTMLElement {
+    const board = createElement({ tag: 'div', className: 'board' });
 
-    const title = this.renderTaskTitle();
-    this.gameField = this.renderGame();
+    if (this.searchedEl) {
+      const title = createElement({
+        tag: 'h1',
+        className: 'board__title',
+        textContent: `Select the ${this.searchedEl}`,
+      });
+      this.gameField = this.renderGame();
 
-    board.append(title, this.gameField);
+      board.append(title, this.gameField);
+    }
+
     return board;
   }
 
-  private renderTaskTitle(): HTMLHeadingElement {
-    const title = document.createElement('h1');
-    title.className = 'board__title';
-
-    if (this.searchedEl) {
-      title.textContent = `Select the ${this.searchedEl}`;
-    }
-
-    return title;
-  }
-
-  private renderGame(): HTMLDivElement {
-    const game = document.createElement('div');
-    game.className = 'parent board__field';
+  private renderGame(): HTMLElement {
+    const game = createElement({
+      tag: 'div',
+      className: 'parent board__field',
+      eventHandlers: {
+        mouseover: this.controller.handleHover,
+        mouseout: this.controller.handleHover,
+      },
+    });
 
     if (this.markup) {
       let wrapper = '';
@@ -74,7 +75,7 @@ export default class GameBoard extends GameBlock {
     return game;
   }
 
-  public getGameField(): HTMLDivElement {
+  public getGameField(): HTMLElement {
     return this.gameField;
   }
 }

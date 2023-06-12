@@ -12,4 +12,13 @@ export interface Task {
   examples: string;
 }
 
+type EventHandlersType = {
+  [key in keyof HTMLElementEventMap]?: (e: Event) => void;
+};
 
+export type ElementCreationParams = {
+  tag: string;
+  className: string;
+  textContent?: string;
+  eventHandlers?: EventHandlersType;
+};
