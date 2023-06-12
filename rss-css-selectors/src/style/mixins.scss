@@ -1,0 +1,13 @@
+@mixin roundShape($background-color, $width, $height) {
+  position: relative;
+  display: block;
+  width: $width;
+  height: $height;
+  border-radius: 50%;
+  background-color: $background-color;
+  border: 1px solid black;
+}
+
+@mixin roundShapeFruit($background-color) {
+  @include roundShape($background-color, 50px, 50px);
+}

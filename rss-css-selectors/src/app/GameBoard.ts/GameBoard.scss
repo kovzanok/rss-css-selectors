@@ -1,0 +1,95 @@
+@import '../../style/mixins.scss';
+
+.board {
+  grid-column: 1/3;
+  &__title {
+    text-align: center;
+    font-size: 30px;
+    color: rgba($color: #ffffff, $alpha: 0.4);
+  }
+
+  &__field {
+    width: fit-content;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+    background-color: #2fc82e;
+    border-radius: 20px;
+  }
+}
+
+apple {
+  @include roundShapeFruit(red);
+  &#rotten {
+    background-color: rgb(179, 34, 34);
+    &::after {
+      position: absolute;
+      content: '';
+      left: 20%;
+      top: 30%;
+      @include roundShape(rgb(97, 27, 27), 20px, 20px);
+    }
+  }
+}
+
+orange {
+  @include roundShapeFruit(orange);
+
+  opacity: 0.8;
+  background-image: linear-gradient(135deg, #ff7b00 25%, transparent 25%),
+    linear-gradient(225deg, #ff7b00 25%, transparent 25%),
+    linear-gradient(45deg, #ff7b00 25%, transparent 25%),
+    linear-gradient(315deg, #ff7b00 25%, #df7100 25%);
+  background-position: 6px 0, 6px 0, 0 0, 0 0;
+  background-size: 6px 6px;
+  background-repeat: repeat;
+}
+
+apple worm,
+orange worm {
+  z-index: 2;
+  width: 40px;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translateY(-50%);
+}
+
+.small {
+  width: 30px;
+  height: 30px;
+}
+
+apple.highlighten,
+orange.highlighten,
+worm.highlighten {
+  box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.45);
+  -webkit-box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.45);
+}
+
+worm {
+  border: 1px solid black;
+  display: block;
+  width: 70px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #df7100;
+  opacity: 1;
+  background-size: 12px 12px;
+  background-image: repeating-linear-gradient(
+    to right,
+    #86572a,
+    #86572a 0.6000000000000001px,
+    #df7100 0.6000000000000001px,
+    #df7100
+  );
+
+  &.small {
+    height: 5px;
+    width: 40px;
+  }
+}
