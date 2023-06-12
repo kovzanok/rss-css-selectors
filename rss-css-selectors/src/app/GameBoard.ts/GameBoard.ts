@@ -3,6 +3,10 @@ import { createElement, renderNestedElements, splitMarkupString } from '../../ut
 import './GameBoard.scss';
 
 export default class GameBoard extends GameBlock {
+  public static helperElement: HTMLDivElement = createElement<HTMLDivElement>({
+    tag: 'div',
+    className: 'board__helper',
+  });
   private gameField!: HTMLDivElement;
   constructor(searchedEl: string, markup: string, searchedSelector: string) {
     super({ searchedEl, markup, searchedSelector });
@@ -19,7 +23,7 @@ export default class GameBoard extends GameBlock {
       });
       this.gameField = this.renderGame();
 
-      board.append(title, this.gameField);
+      board.append(title, this.gameField, GameBoard.helperElement);
     }
 
     return board;

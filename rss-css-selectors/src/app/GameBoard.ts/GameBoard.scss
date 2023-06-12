@@ -1,7 +1,11 @@
 @import '../../style/mixins.scss';
 
 .board {
+  position: relative;
   grid-column: 1/3;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
   &__title {
     text-align: center;
     font-size: 30px;
@@ -18,6 +22,15 @@
     column-gap: 20px;
     background-color: #2fc82e;
     border-radius: 20px;
+  }
+
+  &__helper {
+    position: absolute;
+    display: none;
+    color: white;
+    border-radius: 5px;
+    background-color: #86572a;
+    padding: 5px;
   }
 }
 

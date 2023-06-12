@@ -23,9 +23,16 @@ export default class Controller {
         !hoveredElement.classList.contains('parent')
       ) {
         const relativeEl = this.model.findHoveredRelative(parentElement, hoveredElement);
+        const markup =
+          hoveredElement.textContent?.length === 0
+            ? Model.getElementMarkup(relativeEl)
+            : Model.getElementMarkup(hoveredElement);
+        GameBoard.helperElement.textContent = markup;
         if (e.type === 'mouseover') {
           Model.hightlightElements(relativeEl, hoveredElement);
+          Model.displayHelper(relativeEl, hoveredElement);
         } else if (e.type === 'mouseout') {
+          Model.hideHepler();
           Model.removeHightlight(relativeEl, hoveredElement);
         }
       }

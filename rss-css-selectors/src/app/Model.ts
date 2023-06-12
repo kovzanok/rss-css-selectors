@@ -20,6 +20,34 @@ export default class Model {
     private app: App
   ) {}
 
+  public static displayHelper(relativeEl: HTMLElement, hoveredElement: HTMLElement): void {
+    const elementToBeHelped = relativeEl.closest('.board__field') ? relativeEl : hoveredElement;
+    const rectParams = elementToBeHelped.getBoundingClientRect();
+    GameBoard.helperElement.style.display = 'block';
+    GameBoard.helperElement.style.left = rectParams.left + 'px';
+    GameBoard.helperElement.style.top = rectParams.top + -40 + 'px';
+  }
+
+  public static hideHepler(): void {
+    GameBoard.helperElement.style.display = 'none';
+  }
+
+  public static getElementMarkup(element: HTMLElement): string {
+    const text = element.textContent as string;
+    const firstAngleBracket = text.indexOf('<');
+    const secondAngleBracket = text.indexOf('>');
+    const elementInfo = text
+      .slice(firstAngleBracket + 1, secondAngleBracket)
+      .replace('/', '')
+      .trim();
+    const isAnyAttributes = elementInfo.includes(' ');
+    const tagName = elementInfo.slice(
+      0,
+      isAnyAttributes ? elementInfo.indexOf(' ') : elementInfo.length
+    );
+    return `<${elementInfo}></${tagName}>`;
+  }
+
   public static hightlightElements(relativeEl: HTMLElement, hoveredElement: HTMLElement): void {
     relativeEl.classList.add('highlighten');
     hoveredElement.classList.add('highlighten');
