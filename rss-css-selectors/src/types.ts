@@ -16,8 +16,13 @@ type EventHandlersType = {
   [key in keyof HTMLElementEventMap]?: (e: Event) => void;
 };
 
+type AttributeObjType = {
+  [attribute: string]: string;
+};
+
 export type ElementCreationParams = {
   tag: string;
+  attributes?: AttributeObjType;
   className?: string;
   textContent?: string;
   eventHandlers?: EventHandlersType;

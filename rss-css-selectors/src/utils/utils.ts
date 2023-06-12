@@ -86,6 +86,11 @@ export const createElement = (params: ElementCreationParams): HTMLElement => {
     element.className = params.className;
   }
 
+  if (params.attributes) {
+    for (const [key, value] of Object.entries(params.attributes)) {
+      element.setAttribute(key, value);
+    }
+  }
   if (params.textContent) {
     element.textContent = params.textContent;
   }
