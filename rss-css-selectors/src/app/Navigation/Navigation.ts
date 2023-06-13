@@ -55,9 +55,8 @@ export default class Navigation extends GameBlock {
         (control === 'next-lvl' && this.levelNum === levels.length - 1);
       const button = createElement<HTMLButtonElement>({
         tag: 'button',
-        className: control,
+        className: `${control} lvl-control`,
         disabled: isDisabled,
-        textContent: control,
         eventHandlers: { click: this.controller.handleLevelChange },
       });
       return button;

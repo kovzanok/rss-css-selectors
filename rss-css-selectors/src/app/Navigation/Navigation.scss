@@ -26,10 +26,19 @@
   position: relative;
   &::before {
     position: absolute;
-    content: 'With help';
-    left: 45%;
-    color: rgb(255, 234, 0);
-    top: 50%;
-    transform: translateY(-50%);
+.lvl-control {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: cover;
+  padding: 0;
+  outline: none;
+  border: none;
+  &:disabled {
+    background: transparent;
+    cursor: default;
   }
+}
 }
