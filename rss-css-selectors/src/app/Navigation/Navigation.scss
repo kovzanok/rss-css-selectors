@@ -1,0 +1,15 @@
+.navigation {
+  color: white;
+}
+
+.done {
+  position: relative;
+  &::after {
+    position: absolute;
+    content: 'Done';
+    left: 30%;
+    color: green;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
