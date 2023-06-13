@@ -19,7 +19,6 @@ export default class CssInput extends GameBlock {
       tag: 'input',
       attributes: {
         placeholder: 'Type your selector',
-        autofocus: 'true',
       },
       className: 'css-input',
       eventHandlers: {
@@ -29,6 +28,7 @@ export default class CssInput extends GameBlock {
         },
       },
     });
+    input.autofocus = true;
 
     const button = createElement<HTMLButtonElement>({
       tag: 'button',
