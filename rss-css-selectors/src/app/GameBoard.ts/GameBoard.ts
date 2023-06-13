@@ -52,7 +52,7 @@ export default class GameBoard extends GameBlock {
       renderNestedElements(markupArr, game);
     }
     if (this.searchedSelector) {
-      game.querySelectorAll(this.searchedSelector).forEach((elem) => elem.classList.add('strobe'));
+      game.querySelectorAll(this.searchedSelector).forEach((elem) => elem.classList.add('pulsate'));
     }
     return game;
   }
