@@ -2,6 +2,14 @@
   color: white;
 }
 
+.level-list {
+  color: rgba($color: #fff, $alpha: 0.6);
+}
+
+.current-level {
+  color: #fff;
+}
+
 .done {
   position: relative;
   &::after {
