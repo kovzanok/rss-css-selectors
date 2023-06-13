@@ -171,7 +171,7 @@ export default class Model {
     } else {
       this.app.progress.push({
         levelNum: this.app.levelNum,
-        isDone: !!isDone && false,
+        isDone: !!isDone || false,
         wasHelpUsed: wasHelpUsed,
       });
     }
