@@ -70,11 +70,11 @@ export default class Model {
     return relativeEl;
   }
 
-  public checkAnswer(typedSelector: string, taskSelector: string): boolean {
+  public checkAnswer(typedSelector: string): boolean {
     const gameField = this.gameBoard.getGameField();
     if (typedSelector.length === 0) return false;
     const foundRes = gameField.querySelectorAll(typedSelector);
-    const taskRes = gameField.querySelectorAll(taskSelector);
+    const taskRes = gameField.querySelectorAll(this.cssInput.searchedSelector as string);
     return (
       Array.from(taskRes).every((el, index) => {
         return el === foundRes[index];

@@ -1,10 +1,8 @@
 import GameBoard from './GameBoard.ts/GameBoard';
-import CssInput from './CssInput/CssInput';
 import Model from './Model';
 
 export default class Controller {
   private model!: Model;
-  constructor(private cssInput: CssInput) {}
 
   public handleHover = (e: Event) => {
     const hoveredElement = e.target;
@@ -37,8 +35,8 @@ export default class Controller {
     const form = e.target;
     if (form instanceof HTMLFormElement) {
       const input = form.querySelector('input');
-      if (input && this.cssInput.searchedSelector) {
-        if (this.model.checkAnswer(input.value, this.cssInput.searchedSelector)) {
+      if (input) {
+        if (this.model.checkAnswer(input.value)) {
           this.model.saveProgress({ isDone: true });
           this.model.removeGameField();
         } else {
