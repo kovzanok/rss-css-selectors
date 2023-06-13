@@ -105,8 +105,49 @@ export default class Model {
     shakeElement(htmlMarkup);
   }
 
+  private findFirstNotcompletedLevel() {
+    const completedLevelNums = this.app.progress
+      .map((levelInfo) => levelInfo.levelNum)
+      .sort((a, b) => a - b);
+    const allLevelNums = new Array(levels.length).fill(0).map((_, index) => index);
+    const notcompletedLevelNums = allLevelNums.filter(
+      (num, index) => num !== completedLevelNums[index]
+    );
+    return notcompletedLevelNums[0];
+  }
+
   public removeGameField(): void {
     const game = this.gameBoard.getGameField();
+    if (this.isWin() && this.isLastLevel()) {
+      removeSpecialElements(
+        game,
+        this.cssInput.searchedSelector as string,
+        (() => {
+          alert('Победа');
+          this.goToLevel(0);
+        }).bind(this)
+      );
+    } else if (this.isLastLevel()) {
+      const num = this.findFirstNotcompletedLevel();
+      removeSpecialElements(
+        game,
+        this.cssInput.searchedSelector as string,
+        (() => this.goToLevel(num)).bind(this)
+      );
+    } else {
+      removeSpecialElements(
+        game,
+        this.cssInput.searchedSelector as string,
+        this.nextLevel.bind(this)
+      );
+    }
+  }
+
+  private goToLevel(levelNum: number) {
+    this.app.levelNum = levelNum;
+    this.app.restart();
+  }
+
   public saveProgress() {
     if (!this.app.progress.find((level) => level.levelNum === this.app.levelNum)) {
       this.app.progress.push({ levelNum: this.app.levelNum, wasHelpUsed: false });
@@ -114,12 +155,7 @@ export default class Model {
   }
 
   public nextLevel = () => {
-    if (!this.isWin()) {
-      this.app.levelNum += 1;
-    } else {
-      this.app.levelNum = 0;
-      alert('Игра пройдена');
-    }
+    this.app.levelNum += 1;
     this.app.restart();
   };
 
@@ -127,8 +163,12 @@ export default class Model {
     this.app.levelNum -= 1;
     this.app.restart();
   };
-  private isWin() {
-    //Change win condition according to user progress
+
+  private isLastLevel(): boolean {
     return this.app.levelNum === levels.length - 1;
+  }
+
+  private isWin(): boolean {
+    return this.app.progress.length === levels.length;
   }
 }
