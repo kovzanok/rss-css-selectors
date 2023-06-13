@@ -1,9 +1,18 @@
 .navigation {
   color: white;
+  font-size: 25px;
 }
 
 .level-list {
   color: rgba($color: #fff, $alpha: 0.6);
+  font-size: 18px;
+  padding: 0;
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
 .level-item {
   cursor: pointer;
   &:hover {
@@ -23,17 +32,17 @@
 
 .current-level {
   color: #fff;
+  &:hover {
+    color: #fff;
+  }
 }
 
 .done {
   position: relative;
   &::after {
     position: absolute;
-    content: 'Done';
-    left: 30%;
-    color: green;
-    top: 50%;
-    transform: translateY(-50%);
+    content: url('../../assests/icons/check.svg');
+    right: -40px;
   }
 }
 
@@ -41,6 +50,11 @@
   position: relative;
   &::before {
     position: absolute;
+    content: url('../../assests/icons/help-bulb.svg');
+    left: -40px;
+  }
+}
+
 .lvl-control {
   width: 40px;
   height: 40px;
@@ -65,4 +79,38 @@
 .next-lvl {
   order: 1;
   background-image: url('../../assests/icons/arrow-right.svg');
+}
+
+.title-wrapper {
+  display: flex;
+  font-family: 'Futura Condensed Bold';
+  font-size: 25px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+tag {
+  font-family: monospace;
+  background-color: rgba($color: #fff, $alpha: 0.2);
+  padding: 0 3px;
+  border-radius: 2px;
+  &::after {
+    content: '>';
+  }
+  &::before {
+    content: '<';
+  }
+}
+
+.examples {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.example {
+  font-size: 22px;
+  font-weight: 400;
 }
