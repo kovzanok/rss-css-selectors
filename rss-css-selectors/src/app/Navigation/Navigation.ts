@@ -1,24 +1,32 @@
-import { Task } from '../../types';
+import { Progress, Task } from '../../types';
 import GameBlock from '../../utils/GameBlock';
 import { levels } from '../../levels';
 import { createElement } from '../../utils/utils';
+import './Navigation.scss';
 
 export default class Navigation extends GameBlock {
-  constructor(task: Task, private levelNum: number) {
-    super({ task });
+  constructor(task: Task, private levelNum: number, progress: Progress) {
+    super({ task }, progress);
   }
 
   public renderNavigation(): HTMLDivElement {
-    const navigation = createElement<HTMLDivElement>({ tag: 'div' });
+    const navigation = createElement<HTMLDivElement>({ tag: 'div', className: 'navigation' });
 
     const buttons = this.renderControls();
 
-    const levelCount = createElement<HTMLHeadingElement>({
-      tag: 'h2',
-      textContent: `Level ${this.levelNum + 1} of ${levels.length}`,
-    });
+    if (this.progress) {
+      const isLevelDone = !!this.progress.find((levelInfo) => levelInfo.levelNum === this.levelNum);
+      const wasHelpUsed = !!this.progress.find(
+        (levelInfo) => levelInfo.levelNum === this.levelNum && levelInfo.wasHelpUsed
+      );
+      const levelCount = createElement<HTMLHeadingElement>({
+        tag: 'h2',
+        textContent: `Level ${this.levelNum + 1} of ${levels.length}`,
+        className: isLevelDone ? 'done' : '' + wasHelpUsed ? 'help' : '',
+      });
+      navigation.append(...buttons, levelCount, ...this.renderTaskFullInfo());
+    }
 
-    navigation.append(...buttons, levelCount, ...this.renderTaskFullInfo());
     return navigation;
   }
 
