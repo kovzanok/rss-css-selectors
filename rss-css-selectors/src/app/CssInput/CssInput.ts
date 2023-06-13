@@ -8,7 +8,11 @@ export default class CssInput extends GameBlock {
     super({ searchedSelector });
   }
 
-  public renderInputForm(): HTMLFormElement {
+  public renderInputForm(): HTMLDivElement {
+    const formWrapper = createElement<HTMLDivElement>({
+      tag: 'div',
+      className: 'css-form__wrapper',
+    });
     const form = createElement<HTMLFormElement>({
       tag: 'form',
       className: 'css-form',
@@ -39,7 +43,8 @@ export default class CssInput extends GameBlock {
     this.form = form;
     form.append(input, button);
 
-    return form;
+    formWrapper.append(form);
+    return formWrapper;
   }
 
   public getForm(): HTMLFormElement {
