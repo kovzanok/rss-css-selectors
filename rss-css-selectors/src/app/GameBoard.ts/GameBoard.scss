@@ -51,61 +51,45 @@
   }
 }
 
-orange {
-  @include roundShapeFruit(orange);
 
-  opacity: 0.8;
-  background-image: linear-gradient(135deg, #ff7b00 25%, transparent 25%),
-    linear-gradient(225deg, #ff7b00 25%, transparent 25%),
-    linear-gradient(45deg, #ff7b00 25%, transparent 25%),
-    linear-gradient(315deg, #ff7b00 25%, #df7100 25%);
-  background-position: 6px 0, 6px 0, 0 0, 0 0;
-  background-size: 6px 6px;
-  background-repeat: repeat;
-}
+necklace {
+  @extend %board-item;
+  background-image: url('../../assests/img/necklace.png');
 
-apple worm,
-orange worm {
-  z-index: 2;
-  width: 40px;
-  position: absolute;
-  top: 50%;
-  left: 40%;
-  transform: translateY(-50%);
-}
-
-.small {
-  width: 30px;
-  height: 30px;
-}
-
-apple.highlighten,
-orange.highlighten,
-worm.highlighten {
-  box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.45);
-  -webkit-box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.45);
-  -moz-box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.45);
-}
-
-worm {
-  border: 1px solid black;
-  display: block;
-  width: 70px;
-  height: 10px;
-  border-radius: 5px;
-  background-color: #df7100;
-  opacity: 1;
-  background-size: 12px 12px;
-  background-image: repeating-linear-gradient(
-    to right,
-    #86572a,
-    #86572a 0.6000000000000001px,
-    #df7100 0.6000000000000001px,
-    #df7100
-  );
-
-  &.small {
-    height: 5px;
-    width: 40px;
+  sapphire {
+    @extend %board-inner-necklace-item;
+    background-image: url('../../assests/img/inner-sapphire.png');
   }
+
+  ruby {
+    @extend %board-inner-necklace-item;
+    background-image: url('../../assests/img/inner-ruby.png');
+  }
+
+  &.gold {
+    background-image: url('../../assests/img/gold-necklace.png');
+  }
+
+  &#empire {
+    background-image: url('../../assests/img/empire-necklace.png');
+  }
+}
+
+ring {
+  @extend %board-item;
+  box-sizing: border-box;
+  background-image: url('../../assests/img/ring.png');
+  ruby {
+    @extend %board-inner-ring-item;
+    background-image: url('../../assests/img/inner-ring-ruby.png');
+  }
+  &.gold {
+    background-image: url('../../assests/img/gold-ring.png');
+  }
+}
+
+ruby {
+  @extend %board-item;
+  box-sizing: border-box;
+  background-image: url('../../assests/img/ruby.png');
 }
