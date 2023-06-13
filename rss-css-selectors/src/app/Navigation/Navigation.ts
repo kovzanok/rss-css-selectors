@@ -81,9 +81,9 @@ export default class Navigation extends GameBlock {
       const wasHelpUsed = !!(this.progress as Progress).find(
         (levelInfo) => levelInfo.levelNum === index && levelInfo.wasHelpUsed
       );
-      console.log(this.progress);
+
       const className = [isLevelDone ? 'done' : '', wasHelpUsed ? 'help' : ''];
-      console.log(className);
+
       const item = createElement<HTMLLIElement>({
         tag: 'li',
         className: this.levelNum === index ? 'current-level' : '',
