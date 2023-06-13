@@ -5,22 +5,29 @@
   grid-column: 1/3;
   display: flex;
   flex-direction: column;
-  row-gap: 30px;
+  row-gap: 10px;
+
   &__title {
     text-align: center;
-    font-size: 30px;
+    font-family: 'Futura Condensed Bold', 'sans-serif';
+    font-size: 40px;
     color: rgba($color: #ffffff, $alpha: 0.4);
+    margin-bottom: 0;
   }
 
   &__field {
-    width: fit-content;
+    width: 680px;
+    height: 300px;
     margin: auto;
     padding: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     column-gap: 20px;
-    background-color: #2fc82e;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('../../assests/img/table.png');
     border-radius: 20px;
   }
 
@@ -28,11 +35,12 @@
     position: absolute;
     display: none;
     color: white;
-    border-radius: 5px;
-    background-color: #86572a;
+    font-size: 30px;
+    border-radius: 2px;
+    border: 1px solid white;
+    background-color: rgba($color: #000000, $alpha: 0.8);
     padding: 5px;
   }
-}
 
   &__help {
     cursor: pointer;
