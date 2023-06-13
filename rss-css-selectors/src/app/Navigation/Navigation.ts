@@ -71,7 +71,7 @@ export default class Navigation extends GameBlock {
     const list = createElement<HTMLOListElement>({
       tag: 'ol',
       className: 'level-list',
-      eventHandlers: { click: this.controller.hanldeGoToLevel },
+      eventHandlers: { click: this.controller.handleGoToLevel },
     });
 
     const levelItems = levels.map((level, index) => {

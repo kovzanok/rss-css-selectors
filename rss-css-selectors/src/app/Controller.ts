@@ -46,7 +46,7 @@ export default class Controller {
     }
   };
 
-  public hanldeGoToLevel = (e: Event) => {
+  public handleGoToLevel = (e: Event) => {
     const target = e.target;
     if (target instanceof HTMLLIElement) {
       this.model.goToLevel(Number(target.id));
