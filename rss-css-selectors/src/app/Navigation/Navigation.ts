@@ -24,8 +24,22 @@ export default class Navigation extends GameBlock {
         textContent: `Level ${this.levelNum + 1} of ${levels.length}`,
         className: isLevelDone ? 'done' : '' + wasHelpUsed ? 'help' : '',
       });
+
       const levelList = this.renderLevelList();
-      navigation.append(...buttons, levelCount, ...this.renderTaskFullInfo(), levelList);
+
+      const resetProgressButton = createElement({
+        tag: 'button',
+        textContent: 'Reset progress',
+        eventHandlers: { click: this.controller.handleReset },
+      });
+
+      navigation.append(
+        ...buttons,
+        levelCount,
+        ...this.renderTaskFullInfo(),
+        levelList,
+        resetProgressButton
+      );
     }
 
     return navigation;

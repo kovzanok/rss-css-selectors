@@ -154,6 +154,12 @@ export default class Model {
     }
   }
 
+  public resetProgress() {
+    this.app.progress = [];
+    this.app.levelNum = 0;
+    this.app.restart();
+  }
+
   public nextLevel = () => {
     this.app.levelNum += 1;
     this.app.restart();

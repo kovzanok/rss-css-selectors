@@ -62,6 +62,10 @@ export default class Controller {
     }
   };
 
+  public handleReset = () => {
+    this.model.resetProgress();
+  };
+
   public handleLevelChange = (e: Event) => {
     const button = e.target;
     if (button instanceof HTMLButtonElement) {
