@@ -41,4 +41,13 @@
     cursor: default;
   }
 }
+
+.prev-lvl {
+  order: 0;
+  background-image: url('../../assests/icons/arrow-left.svg');
+}
+
+.next-lvl {
+  order: 1;
+  background-image: url('../../assests/icons/arrow-right.svg');
 }
