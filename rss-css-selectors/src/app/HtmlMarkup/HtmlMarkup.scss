@@ -1,8 +1,16 @@
 .markup {
   color: rgba($color: #fff, $alpha: 0.4);
+  border: 1px solid white;
+  padding: 10px 20px ;
+  font-family: monospace;
+  justify-self: center;
   font-size: 20px;
   div {
     padding-left: 25px;
+  }
+
+  * {
+    font-family: monospace;
   }
 }
 
