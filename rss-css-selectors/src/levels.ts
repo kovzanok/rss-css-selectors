@@ -11,9 +11,11 @@ export const levels: Level[] = [
       taskName: 'Type Selector',
       taskText: 'Select elements by their type',
       taskDescription:
-        'Selects all elements of type A. Type refers to the type of tag, so div, p and ul are all different element types.',
-      examples: `div selects all div elements.
-      p selects all p elements.`,
+        'Selects all elements of type <strong>A</strong>. Type refers to the type of tag, so <tag>div</tag>, <tag>p</tag> and <tag>ul</tag> are all different element types.',
+      examples: [
+        '<strong>div</strong> selects all <tag>div</tag> elements.',
+        '<strong>p</strong> selects all <tag>p</tag> elements.',
+      ],
     },
   },
   {
@@ -28,8 +30,10 @@ export const levels: Level[] = [
       taskText: 'Select elements by their type',
       taskDescription:
         'Selects all elements of type A. Type refers to the type of tag, so div, p and ul are all different element types.',
-      examples: `div selects all div elements.
-      p selects all p elements.`,
+      examples: [
+        '<strong>div</strong> selects all <tag>div</tag> elements.',
+        '<strong>p</strong> selects all <tag>p</tag> elements.',
+      ],
     },
   },
 
@@ -44,8 +48,10 @@ export const levels: Level[] = [
       taskText: 'Select elements with an ID',
       taskDescription:
         'Selects the element with a specific id. You can also combine the ID selector with the type selector.',
-      examples: `#cool selects any element with id="cool"
-      ul#long selects ul id="long"`,
+      examples: [
+        '<strong>#cool</strong> selects any element with <strong>id="cool"</strong>',
+        '<strong>ul#long</strong> selects <tag>ul id="long"</tag>',
+      ],
     },
   },
 
@@ -65,7 +71,10 @@ export const levels: Level[] = [
       taskText: 'Select an element inside another element',
       taskDescription:
         'Selects all B inside of A. B is called a descendant because it is inside of another element.',
-      examples: `p  strong selects all strong elements that are inside of any p`,
+      examples: [
+        '<strong>p&nbsp;&nbsp;strong</strong> selects all <tag>strong</tag> elements that are inside of any <tag>p</tag>',
+        '<strong>#fancy&nbsp;&nbsp;span</strong> selects any <tag>span</tag> elements that are inside of the element with <strong>id="fancy"</strong>',
+      ],
     },
   },
   {
@@ -83,7 +92,9 @@ export const levels: Level[] = [
       taskName: '',
       taskText: 'Combine the Descendant & ID Selectors',
       taskDescription: 'You can combine any selector with the descendent selector.',
-      examples: `#cool span selects all span elements that are inside of elements with id="cool"`,
+      examples: [
+        '<strong>#cool&nbsp;span</strong> selects all <tag>span</tag> elements that are inside of elements with <strong>id="cool"</strong>',
+      ],
     },
   },
   {
@@ -97,7 +108,9 @@ export const levels: Level[] = [
       taskText: 'Select elements by their class',
       taskDescription:
         'The class selector selects all elements with that class attribute. Elements can only have one ID, but many classes.',
-      examples: `.neato selects all elements with class="neato"`,
+      examples: [
+        '<strong>.neato</strong> selects all elements with <strong>class="neato"</strong>',
+      ],
     },
   },
   {
@@ -115,8 +128,10 @@ export const levels: Level[] = [
       taskText: 'Combine the Class Selector',
       taskDescription:
         'You can combine the class selector with other selectors, like the type selector.',
-      examples: `ul.important selects all ul elements that have class="important"
-      #big.wide selects all elements with id="big" that also have class="wide"`,
+      examples: [
+        '<strong>ul.important</strong> selects all <tag>ul</tag> elements that have <strong>class="important"</strong>',
+        '<strong>#big.wide</strong> selects all elements with <strong>id="big"</strong> that also have <strong>class="wide"</strong>',
+      ],
     },
   },
 ];

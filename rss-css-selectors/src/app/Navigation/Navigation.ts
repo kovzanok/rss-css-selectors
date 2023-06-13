@@ -117,10 +117,21 @@ export default class Navigation extends GameBlock {
 
       const description = createElement<HTMLParagraphElement>({
         tag: 'p',
-        textContent: this.task.taskDescription,
+        innerHTML: this.task.taskDescription,
       });
 
-      const examples = createElement({ tag: 'p', textContent: `Examples:\n${this.task.examples}` });
+      const examples = createElement({
+        tag: 'p',
+        className: 'examples',
+        textContent: `Examples`,
+      });
+
+      const examplesArr = this.task.examples.map((exampleHtml) => {
+        const example = createElement({ tag: 'div', className: 'example', innerHTML: exampleHtml });
+        return example;
+      });
+
+      examples.append(...examplesArr);
       return [title, text, description, examples];
     }
     return [];

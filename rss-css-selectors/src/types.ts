@@ -9,7 +9,7 @@ export interface Task {
   taskName: string;
   taskText: string;
   taskDescription: string;
-  examples: string;
+  examples: string[];
 }
 
 export type Progress = LevelProgress[];
@@ -30,6 +30,7 @@ type AttributeObjType = {
 
 export type ElementCreationParams = {
   tag: string;
+  innerHTML?:string;
   disabled?: boolean;
   attributes?: AttributeObjType;
   className?: string;
