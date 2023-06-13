@@ -18,9 +18,19 @@ export default class Model {
     private app: App
   ) {}
 
-  public static displayHelper(relativeEl: HTMLElement, hoveredElement: HTMLElement): void {
-    const elementToBeHelped = relativeEl.closest('.board__field') ? relativeEl : hoveredElement;
-    const rectParams = elementToBeHelped.getBoundingClientRect();
+  public static separateElementAndMarkup(
+    relativeEl: HTMLElement,
+    hoveredElement: HTMLElement
+  ): HTMLElement[] {
+    if (hoveredElement.textContent?.length === 0) {
+      return [hoveredElement, relativeEl];
+    } else {
+      return [relativeEl, hoveredElement];
+    }
+  }
+
+  public static displayHelper(elementToGetHelperText: HTMLElement): void {
+    const rectParams = elementToGetHelperText.getBoundingClientRect();
     GameBoard.helperElement.style.display = 'block';
     GameBoard.helperElement.style.left = rectParams.left + 'px';
     GameBoard.helperElement.style.top = rectParams.top + -40 + 'px';
@@ -71,8 +81,8 @@ export default class Model {
   }
 
   public checkAnswer(typedSelector: string): boolean {
-    const gameField = this.gameBoard.getGameField();
     if (typedSelector.length === 0) return false;
+    const gameField = this.gameBoard.getGameField();
     const foundRes = gameField.querySelectorAll(typedSelector);
     const taskRes = gameField.querySelectorAll(this.cssInput.searchedSelector as string);
     return (
@@ -158,7 +168,7 @@ export default class Model {
   }
 
   public saveProgress({
-    isDone,
+    isDone = false,
     wasHelpUsed = false,
   }: {
     isDone?: boolean;
@@ -171,7 +181,7 @@ export default class Model {
     } else {
       this.app.progress.push({
         levelNum: this.app.levelNum,
-        isDone: !!isDone || false,
+        isDone: isDone,
         wasHelpUsed: wasHelpUsed,
       });
     }
