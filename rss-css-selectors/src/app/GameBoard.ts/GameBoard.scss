@@ -34,16 +34,19 @@
   }
 }
 
-apple {
-  @include roundShapeFruit(red);
-  &#rotten {
-    background-color: rgb(179, 34, 34);
-    &::after {
-      position: absolute;
-      content: '';
-      left: 20%;
-      top: 30%;
-      @include roundShape(rgb(97, 27, 27), 20px, 20px);
+  &__help {
+    cursor: pointer;
+    border-radius: 5px;
+    color: rgb(208, 203, 203);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 180px;
+    margin: auto;
+    font-size: 25px;
+
+    &:hover {
+      color: white;
     }
   }
 }
