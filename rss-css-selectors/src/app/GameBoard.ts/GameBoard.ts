@@ -23,7 +23,15 @@ export default class GameBoard extends GameBlock {
       });
       this.gameField = this.renderGame();
 
-      board.append(title, this.gameField, GameBoard.helperElement);
+      const helpButton = createElement<HTMLButtonElement>({
+        tag: 'button',
+        className: 'board__help',
+        textContent: 'Got stuck? Click me!',
+        eventHandlers: {
+          click: this.controller.handleHelp,
+        },
+      });
+      board.append(title, helpButton, this.gameField, GameBoard.helperElement);
     }
 
     return board;

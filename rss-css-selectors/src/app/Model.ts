@@ -148,6 +148,20 @@ export default class Model {
     this.app.restart();
   }
 
+  public enterCorrenctAnswer() {
+    const form = this.cssInput.getForm();
+    const input = form.querySelector('input') as HTMLInputElement;
+    input.value = '';
+    this.fillInputValue(input, 0, this.cssInput.searchedSelector as string);
+  }
+
+  private fillInputValue(input: HTMLInputElement, index: number, text: string) {
+    if (index < text.length) {
+      input.value += text[index++];
+      setTimeout(() => this.fillInputValue(input, index, text), 200);
+    }
+  }
+
   public saveProgress() {
     if (!this.app.progress.find((level) => level.levelNum === this.app.levelNum)) {
       this.app.progress.push({ levelNum: this.app.levelNum, wasHelpUsed: false });

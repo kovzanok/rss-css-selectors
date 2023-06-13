@@ -66,6 +66,10 @@ export default class Controller {
     this.model.resetProgress();
   };
 
+  public handleHelp = () => {
+    this.model.enterCorrenctAnswer();
+  };
+
   public handleLevelChange = (e: Event) => {
     const button = e.target;
     if (button instanceof HTMLButtonElement) {
