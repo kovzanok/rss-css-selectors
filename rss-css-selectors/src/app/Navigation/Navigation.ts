@@ -65,6 +65,7 @@ export default class Navigation extends GameBlock {
   private renderLevelList(): HTMLOListElement {
     const list = createElement<HTMLOListElement>({
       tag: 'ol',
+      className: 'level-list',
       eventHandlers: { click: this.controller.hanldeGoToLevel },
     });
 
@@ -74,6 +75,7 @@ export default class Navigation extends GameBlock {
       );
       const item = createElement<HTMLLIElement>({
         tag: 'li',
+        className: this.levelNum === index ? 'current-level' : '',
         textContent: level.task.taskText,
         attributes: { id: String(index) },
       });
