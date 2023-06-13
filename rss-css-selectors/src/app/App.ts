@@ -1,6 +1,6 @@
 import GameBoard from './GameBoard.ts/GameBoard';
 import { levels } from '../levels';
-import { Level } from '../types';
+import { Level, Progress } from '../types';
 import CssInput from './CssInput/CssInput';
 import HtmlMarkup from './HtmlMarkup/HtmlMarkup';
 import Controller from './Controller';
@@ -15,15 +15,18 @@ export default class App {
   public levelNum: number;
   private gameContainer: HTMLDivElement;
   private menuContainer: HTMLDivElement;
-
+  public progress: Progress;
   constructor() {
     this.levelNum = Number(window.localStorage.getItem('rss-css-selector-lvl'));
     this.level = levels[this.levelNum];
-    window.onunload = () => {
-      localStorage.setItem('rss-css-selector-lvl', String(this.levelNum));
-    };
     this.gameContainer = document.querySelector('.game-container') as HTMLDivElement;
     this.menuContainer = document.querySelector('.menu-container') as HTMLDivElement;
+    this.progress = App.getProgress();
+
+    window.onunload = () => {
+      localStorage.setItem('rss-css-selector-lvl', String(this.levelNum));
+      localStorage.setItem('rss-css-selector-progress', JSON.stringify(this.progress));
+    };
   }
   start() {
     const gameBoard = new GameBoard(
@@ -33,7 +36,7 @@ export default class App {
     );
     const cssInput = new CssInput(this.level.searchedSelector);
     const htmlMarkup = new HtmlMarkup(this.level.markup);
-    const navigation = new Navigation(this.level.task, this.levelNum);
+    const navigation = new Navigation(this.level.task, this.levelNum, this.progress);
     const model = new Model(gameBoard, htmlMarkup, cssInput, this);
     const controller = new Controller(gameBoard, htmlMarkup, cssInput, this);
     introduceModelAndController(model, controller);
@@ -60,5 +63,14 @@ export default class App {
 
   private static setControllers(gameBlockArr: GameBlock[], controller: Controller): void {
     gameBlockArr.forEach((gameBlock) => gameBlock.setController(controller));
+  }
+
+  private static getProgress(): Progress {
+    const progressString = window.localStorage.getItem('rss-css-selector-progress');
+
+    if (progressString && progressString.length !== 0) {
+      return JSON.parse(progressString) as Progress;
+    }
+    return [];
   }
 }

@@ -12,6 +12,13 @@ export interface Task {
   examples: string;
 }
 
+export type Progress = LevelProgress[];
+
+type LevelProgress = {
+  levelNum: number;
+  wasHelpUsed: boolean;
+};
+
 type EventHandlersType = {
   [key in keyof HTMLElementEventMap]?: (e: Event) => void;
 };
@@ -22,7 +29,7 @@ type AttributeObjType = {
 
 export type ElementCreationParams = {
   tag: string;
-  disabled?:boolean;
+  disabled?: boolean;
   attributes?: AttributeObjType;
   className?: string;
   textContent?: string;
