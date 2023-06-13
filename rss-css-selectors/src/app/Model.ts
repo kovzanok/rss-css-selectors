@@ -143,7 +143,7 @@ export default class Model {
     }
   }
 
-  private goToLevel(levelNum: number) {
+  public goToLevel(levelNum: number) {
     this.app.levelNum = levelNum;
     this.app.restart();
   }

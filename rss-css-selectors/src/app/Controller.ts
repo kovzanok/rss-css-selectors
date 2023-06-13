@@ -55,6 +55,13 @@ export default class Controller {
     }
   };
 
+  public hanldeGoToLevel = (e: Event) => {
+    const target = e.target;
+    if (target instanceof HTMLLIElement) {
+      this.model.goToLevel(Number(target.id));
+    }
+  };
+
   public handleLevelChange = (e: Event) => {
     const button = e.target;
     if (button instanceof HTMLButtonElement) {
