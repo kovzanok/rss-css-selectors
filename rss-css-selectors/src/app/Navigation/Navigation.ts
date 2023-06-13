@@ -15,14 +15,19 @@ export default class Navigation extends GameBlock {
     const buttons = this.renderControls();
 
     if (this.progress) {
-      const isLevelDone = !!this.progress.find((levelInfo) => levelInfo.levelNum === this.levelNum);
+      const isLevelDone = !!this.progress.find(
+        (levelInfo) => levelInfo.levelNum === this.levelNum && levelInfo.isDone
+      );
       const wasHelpUsed = !!this.progress.find(
         (levelInfo) => levelInfo.levelNum === this.levelNum && levelInfo.wasHelpUsed
       );
+
+      const className = [isLevelDone ? 'done' : '', wasHelpUsed ? 'help' : ''];
+
       const levelCount = createElement<HTMLHeadingElement>({
         tag: 'h2',
         textContent: `Level ${this.levelNum + 1} of ${levels.length}`,
-        className: isLevelDone ? 'done' : '' + wasHelpUsed ? 'help' : '',
+        className: className.join(' '),
       });
 
       const levelList = this.renderLevelList();
@@ -71,8 +76,14 @@ export default class Navigation extends GameBlock {
 
     const levelItems = levels.map((level, index) => {
       const isLevelDone = !!(this.progress as Progress).find(
-        (levelInfo) => levelInfo.levelNum === index
+        (levelInfo) => levelInfo.levelNum === index && levelInfo.isDone
       );
+      const wasHelpUsed = !!(this.progress as Progress).find(
+        (levelInfo) => levelInfo.levelNum === index && levelInfo.wasHelpUsed
+      );
+      console.log(this.progress);
+      const className = [isLevelDone ? 'done' : '', wasHelpUsed ? 'help' : ''];
+      console.log(className);
       const item = createElement<HTMLLIElement>({
         tag: 'li',
         className: this.levelNum === index ? 'current-level' : '',
@@ -80,11 +91,11 @@ export default class Navigation extends GameBlock {
         attributes: { id: String(index) },
       });
 
-      const doneMark = createElement<HTMLDivElement>({
+      const mark = createElement<HTMLDivElement>({
         tag: 'div',
-        className: isLevelDone ? 'done' : '',
+        className: className.join(' '),
       });
-      item.prepend(doneMark);
+      item.prepend(mark);
       return item;
     });
 

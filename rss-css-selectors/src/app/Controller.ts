@@ -46,7 +46,7 @@ export default class Controller {
       const input = form.querySelector('input');
       if (input && this.cssInput.searchedSelector) {
         if (this.model.checkAnswer(input.value, this.cssInput.searchedSelector)) {
-          this.model.saveProgress();
+          this.model.saveProgress({ isDone: true });
           this.model.removeGameField();
         } else {
           this.model.handleWrongAnswer(input.value);

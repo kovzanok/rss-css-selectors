@@ -153,6 +153,7 @@ export default class Model {
     const input = form.querySelector('input') as HTMLInputElement;
     input.value = '';
     this.fillInputValue(input, 0, this.cssInput.searchedSelector as string);
+    this.saveProgress({ wasHelpUsed: true });
   }
 
   private fillInputValue(input: HTMLInputElement, index: number, text: string) {
@@ -162,9 +163,23 @@ export default class Model {
     }
   }
 
-  public saveProgress() {
-    if (!this.app.progress.find((level) => level.levelNum === this.app.levelNum)) {
-      this.app.progress.push({ levelNum: this.app.levelNum, wasHelpUsed: false });
+  public saveProgress({
+    isDone,
+    wasHelpUsed = false,
+  }: {
+    isDone?: boolean;
+    wasHelpUsed?: boolean;
+  }) {
+    const savedLevel = this.app.progress.find((level) => level.levelNum === this.app.levelNum);
+    if (savedLevel) {
+      if (isDone) savedLevel.isDone = isDone;
+      if (wasHelpUsed) savedLevel.wasHelpUsed = wasHelpUsed;
+    } else {
+      this.app.progress.push({
+        levelNum: this.app.levelNum,
+        isDone: !!isDone && false,
+        wasHelpUsed: wasHelpUsed,
+      });
     }
   }
 

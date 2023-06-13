@@ -16,6 +16,7 @@ export type Progress = LevelProgress[];
 
 type LevelProgress = {
   levelNum: number;
+  isDone: boolean;
   wasHelpUsed: boolean;
 };
 

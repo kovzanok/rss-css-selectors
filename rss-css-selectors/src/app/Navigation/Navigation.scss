@@ -21,3 +21,15 @@
     transform: translateY(-50%);
   }
 }
+
+.help {
+  position: relative;
+  &::before {
+    position: absolute;
+    content: 'With help';
+    left: 45%;
+    color: rgb(255, 234, 0);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
