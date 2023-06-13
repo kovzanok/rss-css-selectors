@@ -14,6 +14,7 @@ export default class Navigation extends GameBlock {
 
     const buttons = this.renderControls();
 
+    const titleWrapper = createElement<HTMLDivElement>({ tag: 'div', className: 'title-wrapper' });
     if (this.progress) {
       const isLevelDone = !!this.progress.find(
         (levelInfo) => levelInfo.levelNum === this.levelNum && levelInfo.isDone
@@ -22,7 +23,7 @@ export default class Navigation extends GameBlock {
         (levelInfo) => levelInfo.levelNum === this.levelNum && levelInfo.wasHelpUsed
       );
 
-      const className = [isLevelDone ? 'done' : '', wasHelpUsed ? 'help' : ''];
+      const className = [isLevelDone ? 'done' : '', wasHelpUsed ? 'help' : '', 'level-title'];
 
       const levelCount = createElement<HTMLHeadingElement>({
         tag: 'h2',
@@ -38,13 +39,9 @@ export default class Navigation extends GameBlock {
         eventHandlers: { click: this.controller.handleReset },
       });
 
-      navigation.append(
-        ...buttons,
-        levelCount,
-        ...this.renderTaskFullInfo(),
-        levelList,
-        resetProgressButton
-      );
+      titleWrapper.append(...buttons, levelCount);
+
+      navigation.append(titleWrapper, ...this.renderTaskFullInfo(), levelList, resetProgressButton);
     }
 
     return navigation;
