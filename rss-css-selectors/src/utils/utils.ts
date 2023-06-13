@@ -1,5 +1,3 @@
-import Controller from '../app/Controller';
-import Model from '../app/Model';
 import { ElementCreationParams } from '../types';
 
 type splitMarkupStringFunction = (markup: string) => string[];
@@ -147,9 +145,4 @@ export const renderNestedElements = (markupArr: string[], parentElement: HTMLEle
       parentElement.innerHTML += wrapper;
     }
   });
-};
-
-export const introduceModelAndController = (model: Model, controller: Controller) => {
-  model.setController(controller);
-  controller.setModel(model);
 };

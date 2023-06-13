@@ -6,13 +6,11 @@ import {
   shakeElement,
 } from '../utils/utils';
 import App from './App';
-import Controller from './Controller';
 import CssInput from './CssInput/CssInput';
 import GameBoard from './GameBoard.ts/GameBoard';
 import HtmlMarkup from './HtmlMarkup/HtmlMarkup';
 
 export default class Model {
-  private controller!: Controller;
   constructor(
     private gameBoard: GameBoard,
     private htmlMarkup: HtmlMarkup,
@@ -70,10 +68,6 @@ export default class Model {
     const allChildrenRelArr = getAllChildElements(relativeParent);
     const relativeEl = allChildrenRelArr[index];
     return relativeEl;
-  }
-
-  public setController(controller: Controller) {
-    this.controller = controller;
   }
 
   public checkAnswer(typedSelector: string, taskSelector: string): boolean {

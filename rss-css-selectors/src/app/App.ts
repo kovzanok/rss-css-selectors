@@ -8,7 +8,6 @@ import GameBlock from '../utils/GameBlock';
 import Navigation from './Navigation/Navigation';
 import './App.scss';
 import Model from './Model';
-import { introduceModelAndController } from '../utils/utils';
 
 export default class App {
   private level: Level;
@@ -39,7 +38,7 @@ export default class App {
     const navigation = new Navigation(this.level.task, this.levelNum, this.progress);
     const model = new Model(gameBoard, htmlMarkup, cssInput, this);
     const controller = new Controller(gameBoard, htmlMarkup, cssInput, this);
-    introduceModelAndController(model, controller);
+    controller.setModel(model);
     App.setControllers([gameBoard, navigation, htmlMarkup, cssInput], controller);
 
     this.gameContainer.append(
