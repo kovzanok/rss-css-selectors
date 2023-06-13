@@ -2,11 +2,11 @@ import { Level } from './types';
 
 export const levels: Level[] = [
   {
-    searchedEl: 'apple',
+    searchedEl: 'necklace',
     markup: `
-    <apple />
-    <apple />`,
-    searchedSelector: 'apple',
+    <necklace />
+    <necklace />`,
+    searchedSelector: 'necklace',
     task: {
       taskName: 'Type Selector',
       taskText: 'Select elements by their type',
@@ -19,12 +19,12 @@ export const levels: Level[] = [
     },
   },
   {
-    searchedEl: 'oranges',
+    searchedEl: 'rings',
     markup: `
-    <orange />
-    <apple />
-    <orange />`,
-    searchedSelector: 'orange',
+    <ring />
+    <necklace />
+    <ring />`,
+    searchedSelector: 'ring ',
     task: {
       taskName: 'Type Selector',
       taskText: 'Select elements by their type',
@@ -38,11 +38,11 @@ export const levels: Level[] = [
   },
 
   {
-    searchedEl: 'rotten apple',
+    searchedEl: 'empire necklace',
     markup: `
-    <apple id="rotten"/>
-    <apple />`,
-    searchedSelector: '#rotten',
+    <necklace id="empire"/>
+    <necklace />`,
+    searchedSelector: '#empire',
     task: {
       taskName: 'ID Selector',
       taskText: 'Select elements with an ID',
@@ -56,16 +56,16 @@ export const levels: Level[] = [
   },
 
   {
-    searchedEl: 'worm in the orange',
+    searchedEl: 'ruby in necklace',
     markup: `
-    <orange>
-      <worm />
-    </orange>
-    <apple>
-      <worm />
-    </apple>
-    <worm />`,
-    searchedSelector: 'orange worm',
+    <ring>
+      <ruby />
+    </ring>
+    <necklace>
+      <ruby />
+    </necklace>
+    <ruby />`,
+    searchedSelector: 'necklace ruby',
     task: {
       taskName: 'Descendant Selector',
       taskText: 'Select an element inside another element',
@@ -78,31 +78,12 @@ export const levels: Level[] = [
     },
   },
   {
-    searchedEl: 'worm in the rotten apple',
+    searchedEl: 'gold necklace',
     markup: `
-    <orange>
-      <worm />
-    </orange>
-    <apple id="rotten">
-      <worm />
-    </apple>
-    <worm />`,
-    searchedSelector: '#rotten worm',
-    task: {
-      taskName: '',
-      taskText: 'Combine the Descendant & ID Selectors',
-      taskDescription: 'You can combine any selector with the descendent selector.',
-      examples: [
-        '<strong>#cool&nbsp;span</strong> selects all <tag>span</tag> elements that are inside of elements with <strong>id="cool"</strong>',
-      ],
-    },
-  },
-  {
-    searchedEl: 'small apple',
-    markup: `
-    <apple class="small"/>
-    <apple />`,
-    searchedSelector: '.small',
+    <necklace />
+    <necklace class="gold"/>
+    <necklace />`,
+    searchedSelector: '.gold',
     task: {
       taskName: 'Class Selector',
       taskText: 'Select elements by their class',
@@ -114,15 +95,12 @@ export const levels: Level[] = [
     },
   },
   {
-    searchedEl: 'small apple',
+    searchedEl: 'gold ring',
     markup: `
-    
-    <apple >
-      <worm class="small"/>
-    </apple>
-    <apple class="small" />
-    <orange class="small" />`,
-    searchedSelector: 'apple.small',
+    <necklace class="gold" />
+    <ring class="gold" />
+    <necklace class="gold" />`,
+    searchedSelector: 'ring.gold',
     task: {
       taskName: '',
       taskText: 'Combine the Class Selector',
