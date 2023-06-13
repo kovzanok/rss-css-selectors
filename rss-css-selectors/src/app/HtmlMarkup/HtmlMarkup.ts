@@ -17,7 +17,7 @@ export default class HtmlMarkup extends GameBlock {
     const markup = createElement<HTMLDivElement>({
       tag: 'div',
       className: 'parent markup',
-      textContent: '<div class="garden">',
+      textContent: '<div class="enchanting-table">',
       eventHandlers: {
         mouseover: this.controller.handleHover,
         mouseout: this.controller.handleHover,
