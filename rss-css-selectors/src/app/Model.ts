@@ -107,11 +107,10 @@ export default class Model {
 
   public removeGameField(): void {
     const game = this.gameBoard.getGameField();
-    removeSpecialElements(
-      game,
-      this.cssInput.searchedSelector as string,
-      this.nextLevel.bind(this)
-    );
+  public saveProgress() {
+    if (!this.app.progress.find((level) => level.levelNum === this.app.levelNum)) {
+      this.app.progress.push({ levelNum: this.app.levelNum, wasHelpUsed: false });
+    }
   }
 
   public nextLevel = () => {
