@@ -97,6 +97,10 @@ export const createElement = <T extends HTMLElement>(params: ElementCreationPara
     element.className = params.className;
   }
 
+  if (params.innerHTML) {
+    element.innerHTML = params.innerHTML;
+  }
+
   if (params.disabled) {
     element.setAttribute('disabled', '');
   }
