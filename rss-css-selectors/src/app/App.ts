@@ -37,7 +37,7 @@ export default class App {
     const htmlMarkup = new HtmlMarkup(this.level.markup);
     const navigation = new Navigation(this.level.task, this.levelNum, this.progress);
     const model = new Model(gameBoard, htmlMarkup, cssInput, this);
-    const controller = new Controller(gameBoard, htmlMarkup, cssInput, this);
+    const controller = new Controller(cssInput);
     controller.setModel(model);
     App.setControllers([gameBoard, navigation, htmlMarkup, cssInput], controller);
 

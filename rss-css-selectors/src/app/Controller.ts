@@ -1,17 +1,10 @@
-import App from './App';
 import GameBoard from './GameBoard.ts/GameBoard';
-import HtmlMarkup from './HtmlMarkup/HtmlMarkup';
 import CssInput from './CssInput/CssInput';
 import Model from './Model';
 
 export default class Controller {
   private model!: Model;
-  constructor(
-    private gameBoard: GameBoard,
-    private htmlMarkup: HtmlMarkup,
-    private cssInput: CssInput,
-    private app: App
-  ) {}
+  constructor(private cssInput: CssInput) {}
 
   public handleHover = (e: Event) => {
     const hoveredElement = e.target;
