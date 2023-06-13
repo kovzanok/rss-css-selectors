@@ -32,8 +32,8 @@ export default class Model {
   public static displayHelper(elementToGetHelperText: HTMLElement): void {
     const rectParams = elementToGetHelperText.getBoundingClientRect();
     GameBoard.helperElement.style.display = 'block';
-    GameBoard.helperElement.style.left = rectParams.left + 'px';
-    GameBoard.helperElement.style.top = rectParams.top + -40 + 'px';
+    GameBoard.helperElement.style.left = rectParams.left + 20 + 'px';
+    GameBoard.helperElement.style.top = rectParams.top - 60 + 'px';
   }
 
   public static hideHepler(): void {
