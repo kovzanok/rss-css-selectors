@@ -4,6 +4,21 @@
 
 .level-list {
   color: rgba($color: #fff, $alpha: 0.6);
+.level-item {
+  cursor: pointer;
+  &:hover {
+    color: rgba($color: #fff, $alpha: 0.8);
+  }
+  &.done {
+    &::after {
+      right: -70px;
+    }
+  }
+  &.help {
+    &::before {
+      left: calc(100% + 10px);
+    }
+  }
 }
 
 .current-level {

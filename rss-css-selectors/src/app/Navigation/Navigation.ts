@@ -78,20 +78,20 @@ export default class Navigation extends GameBlock {
         (levelInfo) => levelInfo.levelNum === index && levelInfo.wasHelpUsed
       );
 
-      const className = [isLevelDone ? 'done' : '', wasHelpUsed ? 'help' : ''];
+      const className = [
+        isLevelDone ? 'done' : '',
+        wasHelpUsed ? 'help' : '',
+        this.levelNum === index ? 'current-level' : '',
+        'level-item',
+      ];
 
       const item = createElement<HTMLLIElement>({
         tag: 'li',
-        className: this.levelNum === index ? 'current-level' : '',
+        className: className.join(' ').trim(),
         textContent: level.task.taskText,
         attributes: { id: String(index) },
       });
 
-      const mark = createElement<HTMLDivElement>({
-        tag: 'div',
-        className: className.join(' '),
-      });
-      item.prepend(mark);
       return item;
     });
 
