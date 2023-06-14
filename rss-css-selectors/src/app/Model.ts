@@ -198,11 +198,6 @@ export default class Model {
     this.app.restart();
   };
 
-  public prevLevel = () => {
-    this.app.levelNum -= 1;
-    this.app.restart();
-  };
-
   private isLastLevel(): boolean {
     return this.app.levelNum === levels.length - 1;
   }

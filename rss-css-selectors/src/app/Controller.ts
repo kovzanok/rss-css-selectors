@@ -62,17 +62,6 @@ export default class Controller {
     this.model.enterCorrenctAnswer();
   };
 
-  public handleLevelChange = (e: Event) => {
-    const button = e.target;
-    if (button instanceof HTMLButtonElement) {
-      if (button.classList.contains('prev-lvl')) {
-        this.model.prevLevel();
-      } else {
-        this.model.nextLevel();
-      }
-    }
-  };
-
   public setModel(model: Model) {
     this.model = model;
   }

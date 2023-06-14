@@ -2,14 +2,7 @@ export interface Level {
   searchedEl: string;
   markup: string;
   searchedSelector: string;
-  task: Task;
-}
-
-export interface Task {
-  taskName: string;
-  taskText: string;
-  taskDescription: string;
-  examples: string[];
+  levelName: string;
 }
 
 export type Progress = LevelProgress[];
