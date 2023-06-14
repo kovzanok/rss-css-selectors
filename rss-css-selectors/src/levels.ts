@@ -187,7 +187,6 @@ export const levels: Level[] = [
       <sapphire />
     </necklace>
     <ruby />
-    <ruby /> 
     `,
     searchedSelector: 'necklace + ruby',
     task: {
