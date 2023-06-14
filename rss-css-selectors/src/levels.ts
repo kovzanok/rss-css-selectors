@@ -7,7 +7,7 @@ export const levels: Level[] = [
     <necklace />
     <necklace />`,
     searchedSelector: 'necklace',
-    levelName: 'Select elements by their type',
+    levelName: 'Type Selector',
   },
   {
     searchedEl: 'rings',
@@ -16,7 +16,7 @@ export const levels: Level[] = [
     <necklace />
     <ring />`,
     searchedSelector: 'ring ',
-    levelName: 'Select elements by their type',
+    levelName: 'Type Selector',
   },
 
   {
@@ -25,7 +25,7 @@ export const levels: Level[] = [
     <necklace id="empire"/>
     <necklace />`,
     searchedSelector: '#empire',
-    levelName: 'Select elements with an ID',
+    levelName: 'ID Selector',
   },
 
   {
@@ -39,7 +39,7 @@ export const levels: Level[] = [
     </necklace>
     <ruby />`,
     searchedSelector: 'necklace ruby',
-    levelName: 'Select an element inside another element',
+    levelName: 'Descendant Selector',
   },
   {
     searchedEl: 'gold necklace',
@@ -48,7 +48,7 @@ export const levels: Level[] = [
     <necklace class="gold"/>
     <necklace />`,
     searchedSelector: '.gold',
-    levelName: 'Select elements by their class',
+    levelName: 'Class Selector',
   },
   {
     searchedEl: 'gold ring',
@@ -57,7 +57,7 @@ export const levels: Level[] = [
     <ring class="gold" />
     <necklace class="gold" />`,
     searchedSelector: 'ring.gold',
-    levelName: 'Combine the Class Selector',
+    levelName: 'Type & Class Selector',
   },
   {
     searchedEl: 'all rings and necklaces',
@@ -72,7 +72,7 @@ export const levels: Level[] = [
     <necklace class="gold" />
     <sapphire/>`,
     searchedSelector: 'ring,necklace',
-    levelName: 'Combine selectors with commas',
+    levelName: 'Comma Combinator',
   },
   {
     searchedEl: 'all the things',
@@ -83,7 +83,7 @@ export const levels: Level[] = [
     <necklace class="gold"/>
     `,
     searchedSelector: '*',
-    levelName: 'Select everything',
+    levelName: 'The Universal Selector',
   },
   {
     searchedEl: 'all gems in necklaces',
@@ -98,7 +98,7 @@ export const levels: Level[] = [
     <ruby /> 
     `,
     searchedSelector: 'necklace *',
-    levelName: 'Combine the Universal Selector',
+    levelName: 'Tag & Universal Selector',
   },
   {
     searchedEl: "every ruby that's next to necklace",
@@ -114,6 +114,6 @@ export const levels: Level[] = [
     <ruby />
     `,
     searchedSelector: 'necklace + ruby',
-    levelName: 'Combine the Universal Selector',
+    levelName: 'Adjacent Sibling Selector',
   },
 ];
