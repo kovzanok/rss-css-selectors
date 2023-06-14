@@ -112,4 +112,93 @@ export const levels: Level[] = [
       ],
     },
   },
+  {
+    searchedEl: 'all rings and necklaces',
+    markup: `
+    <sapphire/>
+    <ring class="gold">
+      <sapphire />
+    </ring>
+    <necklace>
+      <ruby />
+    </necklace>
+    <necklace class="gold" />
+    <sapphire/>`,
+    searchedSelector: 'ring,necklace',
+    task: {
+      taskName: 'Comma Combinator',
+      taskText: 'Combine selectors with commas',
+      taskDescription:
+        'You can combine any selectors with comma, more than two selectors can be specified.',
+      examples: [
+        '<strong>p, .fun</strong> selects all <tag>p</tag> elements as well as all elements with <strong>class="fun"</strong>',
+        '<strong>a, p, div</strong> selects all <tag>a</tag>, <tag>p</tag> and <tag>div</tag> elements',
+      ],
+    },
+  },
+  {
+    searchedEl: 'all the things',
+    markup: `
+    <sapphire />
+    <ring class="gold"/>
+    <ruby />
+    <necklace class="gold"/>
+    `,
+    searchedSelector: '*',
+    task: {
+      taskName: 'The Universal Selector',
+      taskText: 'Select everything',
+      taskDescription: 'You can select all elements with the universal selector.',
+      examples: ['<strong>p *</strong> selects any element inside all <tag>p</tag> elements.'],
+    },
+  },
+  {
+    searchedEl: 'all gems in necklaces',
+    markup: `
+    <sapphire />
+    <necklace>
+      <ruby />
+    </necklace>
+    <necklace class="gold">
+      <sapphire />
+    </necklace>
+    <ruby /> 
+    `,
+    searchedSelector: 'necklace *',
+    task: {
+      taskName: '',
+      taskText: 'Combine the Universal Selector',
+      taskDescription: 'You can select all elements inside of <strong>A</strong>.',
+      examples: [
+        '<strong>p *</strong> selects every element inside all <tag>p</tag> elements.',
+        '<strong>ul.fancy *</strong> selects every element inside all <tag>ul class="fancy"</tag> elements.',
+      ],
+    },
+  },
+  {
+    searchedEl: "every ruby that's next to necklace",
+    markup: `
+    <ruby />
+    <necklace>
+      <ruby />
+    </necklace>
+    <ruby />
+    <necklace class="gold">
+      <sapphire />
+    </necklace>
+    <ruby />
+    <ruby /> 
+    `,
+    searchedSelector: 'necklace + ruby',
+    task: {
+      taskName: 'Adjacent Sibling Selector',
+      taskText: 'Combine the Universal Selector',
+      taskDescription:
+        'Separates two selectors and matches the second element only if it immediately follows the first element, and both are children of the same parent',
+      examples: [
+        '<strong>p + .intro</strong> selects every element with <strong>class="intro"</strong> that directly follows a <tag>p</tag>',
+        '<strong>div + a</strong> selects every <tag>a</tag> element that directly follows a <tag>div</tag>',
+      ],
+    },
+  },
 ];
