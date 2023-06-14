@@ -60,7 +60,6 @@
   }
 }
 
-
 necklace {
   @extend %board-item;
   background-image: url('../../assests/img/necklace.png');
@@ -77,6 +76,11 @@ necklace {
 
   &.gold {
     background-image: url('../../assests/img/gold-necklace.png');
+
+    sapphire {
+      @extend %board-inner-necklace-item;
+      background-image: url('../../assests/img/inner-sapphire.png');
+    }
   }
 
   &#empire {
@@ -94,6 +98,10 @@ ring {
   }
   &.gold {
     background-image: url('../../assests/img/gold-ring.png');
+    sapphire {
+      @extend %board-inner-ring-item;
+      background-image: url('../../assests/img/inner-ring-sapphire.png');
+    }
   }
 }
 
@@ -101,4 +109,10 @@ ruby {
   @extend %board-item;
   box-sizing: border-box;
   background-image: url('../../assests/img/ruby.png');
+}
+
+sapphire {
+  @extend %board-item;
+  box-sizing: border-box;
+  background-image: url('../../assests/img/sapphire.png');
 }
