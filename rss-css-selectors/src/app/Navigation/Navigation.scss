@@ -1,16 +1,26 @@
 .navigation {
   color: white;
   font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-title {
+  margin: 20px 0;
 }
 
 .level-list {
   color: rgba($color: #fff, $alpha: 0.6);
-  font-size: 25px;
+  font-size: 30px;
   padding: 0;
   width: max-content;
   display: flex;
   flex-direction: column;
   row-gap: 10px;
+  margin: 0;
+  padding: 0;
 }
 
 .level-item {
@@ -21,18 +31,17 @@
   &.done {
     &::after {
       width: 32px;
-      height: 24px;
-      right: -70px;
+      height: 100%;
+      right: -50px;
     }
   }
   &.help {
     &::before {
       width: 32px;
-      height: 24px;
-      left: calc(100% + 10px);
+      height: 30px;
+      left: -50px;
     }
   }
-  
 }
 
 .current-level {
@@ -71,62 +80,14 @@
   }
 }
 
-.lvl-control {
-  width: 40px;
-  height: 40px;
+.reset-button {
   cursor: pointer;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  background-size: cover;
-  padding: 0;
-  outline: none;
+  font-size: 25px;
   border: none;
-  &:disabled {
-    background: transparent;
-    cursor: default;
-  }
-}
-
-.prev-lvl {
-  order: 0;
-  background-image: url('../../assests/icons/arrow-left.png');
-}
-
-.next-lvl {
-  order: 1;
-  background-image: url('../../assests/icons/arrow-right.png');
-}
-
-.title-wrapper {
-  display: flex;
-  font-family: 'Futura Condensed Bold';
-  font-size: 25px;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-tag {
-  font-family: monospace;
-  background-color: rgba($color: #fff, $alpha: 0.2);
-  padding: 0 3px;
+  outline: none;
   border-radius: 2px;
-  &::after {
-    content: '>';
+  margin: 40px auto 0;
+  &:hover {
+    background-color: rgba($color: #fff, $alpha: 0.7);
   }
-  &::before {
-    content: '<';
-  }
-}
-
-.examples {
-  display: flex;
-  flex-direction: column;
-  row-gap: 10px;
-  font-size: 1.17em;
-  font-weight: 700;
-}
-
-.example {
-  font-size: 25px;
-  font-weight: 400;
 }

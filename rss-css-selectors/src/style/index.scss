@@ -22,8 +22,12 @@ body * {
 
 body {
   margin: 0;
+  height: 100vh;
   background-image: url('../assests/img/background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
