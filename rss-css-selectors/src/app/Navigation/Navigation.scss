@@ -5,12 +5,12 @@
 
 .level-list {
   color: rgba($color: #fff, $alpha: 0.6);
-  font-size: 18px;
+  font-size: 25px;
   padding: 0;
   width: max-content;
   display: flex;
   flex-direction: column;
-  row-gap: 8px;
+  row-gap: 10px;
 }
 
 .level-item {
@@ -20,14 +20,19 @@
   }
   &.done {
     &::after {
+      width: 32px;
+      height: 24px;
       right: -70px;
     }
   }
   &.help {
     &::before {
+      width: 32px;
+      height: 24px;
       left: calc(100% + 10px);
     }
   }
+  
 }
 
 .current-level {
@@ -41,16 +46,27 @@
   position: relative;
   &::after {
     position: absolute;
-    content: url('../../assests/icons/check.svg');
-    right: -40px;
+    content: '';
+    width: 33px;
+    height: 45px;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('../../assests/icons/check.png');
+    right: -52px;
   }
 }
 
 .help {
   position: relative;
   &::before {
+    content: '';
+    width: 30px;
+    height: 45px;
     position: absolute;
-    content: url('../../assests/icons/help-bulb.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('../../assests/icons/help.png');
     left: -40px;
   }
 }
