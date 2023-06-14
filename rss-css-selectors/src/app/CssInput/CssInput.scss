@@ -1,21 +1,33 @@
+@import '../../style/mixins';
+
 .css-form__wrapper {
   padding-top: 80px;
+  @include media-pre-mobile {
+    padding: 0;
+    margin-top: 20px;
+    order: 3;
+  }
 }
 
 .css-form {
   background-color: white;
-  width: 60%;
+  width: max-content;
+  padding: 0 10px;
   margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  
 }
 
 .css-input {
   border: none;
   outline: none;
   font-size: 30px;
-  padding: 5px; 
+  padding: 5px;
+  @include media-desktop {
+    font-size: 20px;
+  }
 }
 
 .css-submit {

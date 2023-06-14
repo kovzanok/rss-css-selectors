@@ -1,15 +1,23 @@
+@import '../style/mixins';
+
 .main {
-  height: 100%;
+  
   display: flex;
   justify-content: space-between;
+  column-gap: 20px;
 }
 
 .game-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 45% 55%;
   grid-template-rows: 360px 1fr;
   row-gap: 40px;
   padding-bottom: 20px;
+  @include media-pre-mobile {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+  }
 }
 
 .game {
@@ -20,9 +28,20 @@
   flex-basis: 35%;
   background-color: rgba($color: #7d7777, $alpha: 0.2);
   border-left: 1px solid white;
+  @include media-desktop {
+    flex-basis: 20%;
+  }
+  @include media-pre-tablet {
+    display: none;
+  }
 }
 
 .menu-container {
+  padding: 0 10px;
+}
+
+footer {
+  background-color: black;
 }
 
 .footer-list {

@@ -1,4 +1,5 @@
 @import '../../style/placeholders.scss';
+@import '../../style/mixins';
 
 .board {
   position: relative;
@@ -14,10 +15,14 @@
     color: rgba($color: #ffffff, $alpha: 0.4);
     margin-bottom: 0;
     margin-top: 15px;
+    @include media-pre-mobile {
+      padding: 0 10px;
+      font-size: 30px;
+    }
   }
 
   &__field {
-    width: 680px;
+    width: 60%;
     height: 250px;
     margin: auto;
     padding: 20px;
@@ -30,9 +35,18 @@
     background-repeat: no-repeat;
     background-image: url('../../assests/img/table.png');
     border-radius: 20px;
+    @include media-post-desktop {
+      width: 70%;
+      row-gap: 10px;
+      flex-wrap: wrap;
+    }
+    @include media-pre-mobile {
+      padding: 5px;
+    }
   }
 
   &__helper {
+    z-index: 5;
     font-family: monospace;
     position: absolute;
     display: none;
@@ -43,6 +57,13 @@
     border: 1px solid white;
     background-color: rgba($color: #000000, $alpha: 0.8);
     padding: 5px 10px;
+    @include media-pre-tablet {
+      font-size: 18px;
+      width: min-content;      
+    }
+    @include media-pre-mobile {
+      font-size: 12px;  
+    }
   }
 
   &__help {

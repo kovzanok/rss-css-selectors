@@ -1,0 +1,20 @@
+$desktop-breakpoint: 1200px;
+$post-dektop-breakpoint: 1000px;
+$pre-tablet-breakpoint: 868px;
+$pre-mobile-breakpoint: 560px;
+
+@mixin media-desktop{
+  @media (max-width: $desktop-breakpoint){@content;}
+}
+
+@mixin media-post-desktop{
+  @media (max-width: $post-dektop-breakpoint){@content;}
+}
+
+@mixin media-pre-tablet{
+  @media (max-width: $pre-tablet-breakpoint){@content;}
+}
+
+@mixin media-pre-mobile{
+  @media (max-width: $pre-mobile-breakpoint){@content;}
+}

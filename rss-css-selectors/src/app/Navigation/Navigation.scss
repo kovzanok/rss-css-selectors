@@ -1,3 +1,5 @@
+@import '../../style/mixins';
+
 .navigation {
   color: white;
   font-size: 25px;
@@ -5,6 +7,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
 }
 
 .nav-title {
@@ -14,13 +17,15 @@
 .level-list {
   color: rgba($color: #fff, $alpha: 0.6);
   font-size: 30px;
-  padding: 0;
-  width: max-content;
   display: flex;
+  width: max-content;
   flex-direction: column;
   row-gap: 10px;
   margin: 0;
-  padding: 0;
+  padding: 0 60px;
+  @include media-desktop {
+    font-size: 22px;
+  }
 }
 
 .level-item {
@@ -39,7 +44,7 @@
     &::before {
       width: 32px;
       height: 30px;
-      left: -50px;
+      left: -60px;
     }
   }
 }

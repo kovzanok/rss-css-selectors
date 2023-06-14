@@ -2,8 +2,9 @@
   position: relative;
   background-color: black;
   border: 1px solid rgba(#fff, 0.6);
+  min-width: 100px;
   width: 100px;
-  height: 100px;
+  height: 70px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -16,19 +17,20 @@
   position: absolute;
   z-index: 2;
   top: 40%;
-  left: 31%;
+  left: 37px;
   border-radius: 50%;
   display: block;
-  width: 40px;
-  height: 40px;
+  min-width: initial;
+  width: 29px;
+  height: 29px;
   background-repeat: no-repeat;
   background-size: contain;
-
+  background-color: transparent;
+  border: none;
   &.highlighten {
     box-shadow: 0px 0px 0px 5px rgba(#fff, 0.8);
   }
 }
-
 
 %board-inner-ring-item {
   position: absolute;
@@ -39,8 +41,9 @@
   left: 36%;
   border-radius: 50%;
   display: block;
-  width: 40px;
-  height: 40px;
+  min-width: initial;
+  width: 34px;
+  height: 24px;
   background-repeat: no-repeat;
   background-size: contain;
 

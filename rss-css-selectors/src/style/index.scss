@@ -1,3 +1,9 @@
+html {
+  overflow: auto;
+  
+  
+}
+
 @font-face {
   font-family: 'Futura Condensed';
   src: local('Futura Condensed'),
@@ -17,17 +23,15 @@
 }
 
 body * {
-  font-family: 'Futura Condensed','sans-serif';
+  font-family: 'Futura Condensed', 'sans-serif';
 }
 
 body {
   margin: 0;
-  height: 100vh;
-  background-image: url('../assests/img/background.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
+  height: 100vh; 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-image: url('../assests/img/background.jpg');
+  background-size: auto;
 }
-
