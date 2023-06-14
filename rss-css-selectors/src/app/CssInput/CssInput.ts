@@ -25,14 +25,7 @@ export default class CssInput extends GameBlock {
         placeholder: 'Type your selector',
       },
       className: 'css-input',
-      eventHandlers: {
-        blur: (e) => {
-          const input = e.target as HTMLInputElement;
-          input.focus();
-        },
-      },
     });
-    input.autofocus = true;
 
     const button = createElement<HTMLButtonElement>({
       tag: 'button',
