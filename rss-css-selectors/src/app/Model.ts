@@ -9,13 +9,16 @@ import App from './App';
 import CssInput from './CssInput/CssInput';
 import GameBoard from './GameBoard.ts/GameBoard';
 import HtmlMarkup from './HtmlMarkup/HtmlMarkup';
+import Popup from './Popup/Popup';
 
 export default class Model {
+  private popupElement!: HTMLDivElement;
   constructor(
     private gameBoard: GameBoard,
     private htmlMarkup: HtmlMarkup,
     private cssInput: CssInput,
-    private app: App
+    private app: App,
+    private popup: Popup
   ) {}
 
   public static separateElementAndMarkup(
@@ -122,13 +125,15 @@ export default class Model {
 
   public removeGameField(): void {
     const game = this.gameBoard.getGameField();
-    if (this.isWin() && this.isLastLevel()) {
+    if (this.isWin()) {
       removeSpecialElements(
         game,
         this.cssInput.searchedSelector as string,
         (() => {
-          alert('Победа');
-          this.goToLevel(0);
+          this.popupElement = this.popup.renderPopup();
+          document.body.append(this.popupElement);
+
+          this.goToLevel(this.app.levelNum);
         }).bind(this)
       );
     } else if (this.isLastLevel()) {
@@ -161,6 +166,8 @@ export default class Model {
   }
 
   private fillInputValue(input: HTMLInputElement, index: number, text: string) {
+    const inputEvent = new Event('input');
+    input.dispatchEvent(inputEvent);
     if (index < text.length) {
       input.value += text[index++];
       setTimeout(() => this.fillInputValue(input, index, text), 200);
@@ -234,5 +241,9 @@ export default class Model {
     } else {
       form.classList.remove('blink');
     }
+  }
+
+  public closePopup() {
+    this.popupElement.remove();
   }
 }

@@ -8,6 +8,7 @@ import GameBlock from '../utils/GameBlock';
 import Navigation from './Navigation/Navigation';
 import './App.scss';
 import Model from './Model';
+import Popup from './Popup/Popup';
 
 export default class App {
   private level: Level;
@@ -37,10 +38,11 @@ export default class App {
     const cssInput = new CssInput(this.level.searchedSelector);
     const htmlMarkup = new HtmlMarkup(this.level.markup);
     const navigation = new Navigation(this.levelNum, this.progress);
-    const model = new Model(gameBoard, htmlMarkup, cssInput, this);
+    const popup = new Popup();
+    const model = new Model(gameBoard, htmlMarkup, cssInput, this, popup);
     const controller = new Controller();
     controller.setModel(model);
-    App.setControllers([gameBoard, navigation, htmlMarkup, cssInput], controller);
+    App.setControllers([gameBoard, navigation, htmlMarkup, cssInput, popup], controller);
     main.onclick = controller.handleMainuClick;
     this.gameContainer.append(
       gameBoard.renderBoardElements(),

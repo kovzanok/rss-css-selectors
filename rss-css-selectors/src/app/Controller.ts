@@ -76,4 +76,8 @@ export default class Controller {
       this.model.changeClassName(target);
     }
   };
+
+  public handlePopupClose = () => {
+    this.model.closePopup();
+  };
 }
