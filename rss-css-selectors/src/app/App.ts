@@ -28,6 +28,7 @@ export default class App {
     };
   }
   start() {
+    const main = document.querySelector('.main') as HTMLElement;
     const gameBoard = new GameBoard(
       this.level.searchedEl,
       this.level.markup,
@@ -40,7 +41,7 @@ export default class App {
     const controller = new Controller();
     controller.setModel(model);
     App.setControllers([gameBoard, navigation, htmlMarkup, cssInput], controller);
-
+    main.onclick = controller.handleMainuClick;
     this.gameContainer.append(
       gameBoard.renderBoardElements(),
       cssInput.renderInputForm(),

@@ -1,7 +1,6 @@
 @import '../style/mixins';
 
 .main {
-  
   display: flex;
   justify-content: space-between;
   column-gap: 20px;
@@ -25,19 +24,50 @@
 }
 
 .menu {
+  transition: all 0.4s ease;
   flex-basis: 35%;
   background-color: rgba($color: #7d7777, $alpha: 0.2);
   border-left: 1px solid white;
+  border-bottom: 1px solid white;
+  padding-bottom: 30px;
   @include media-desktop {
     flex-basis: 20%;
   }
   @include media-pre-tablet {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    border: none;
+    position: fixed;
+    right: 0;
+    z-index: 7;
+    height: 100%;
+    width: 100%;
+    background-color: rgba($color: black, $alpha: 0.8);
+    &.active {
+      visibility: visible;
+      opacity: 1;
+      .menu-container {
+        transform: translateX(0%);
+      }
+
+      ~ .burger-button {
+        transform: rotate(-180deg);
+      }
+    }
   }
 }
 
 .menu-container {
   padding: 0 10px;
+  transition: all 0.4s ease;
+  @include media-pre-tablet {
+    transform: translateX(100%);
+    border-left: 1px solid white;
+    background-color: black;
+    width: 320px;
+    margin-left: auto;
+    height: 100%;
+  }
 }
 
 footer {
@@ -85,4 +115,29 @@ footer {
   background-position: center;
   background-size: contain;
   background-image: url('../assests/img/github-mark-white.svg');
+}
+
+.burger-button {
+  transition: all 0.4s ease;
+  display: none;
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  background-image: url('../assests/icons/menu-button.png');
+  position: fixed;
+  z-index: 14;
+  top: 5%;
+  right: 5%;
+  @include media-pre-tablet {
+    display: block;
+  }
+}
+
+.lock {
+  overflow: hidden;
 }

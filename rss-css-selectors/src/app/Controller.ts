@@ -62,6 +62,10 @@ export default class Controller {
     this.model.enterCorrenctAnswer();
   };
 
+  public handleMainuClick = (e: Event): void => {
+    this.model.toggleMenu(e);
+  };
+
   public setModel(model: Model) {
     this.model = model;
   }

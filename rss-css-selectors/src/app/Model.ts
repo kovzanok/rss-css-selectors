@@ -205,4 +205,25 @@ export default class Model {
   private isWin(): boolean {
     return this.app.progress.length === levels.length;
   }
+
+  public toggleMenu = (e: Event): void => {
+    const target = e.target;
+
+    if (target && target instanceof HTMLElement) {
+      if (target.id === 'burger') {
+        const main = target.parentElement as HTMLElement;
+        const menu = main.querySelector('#menu') as HTMLElement;
+        menu.classList.toggle('active');
+        document.body.classList.toggle('lock');
+      } else if (
+        target.classList.contains('level-item') ||
+        target.classList.contains('menu') ||
+        target.classList.contains('reset-button')
+      ) {
+        const menu = document.getElementById('menu') as HTMLElement;
+        menu.classList.remove('active');
+        document.body.classList.remove('lock');
+      }
+    }
+  };
 }
