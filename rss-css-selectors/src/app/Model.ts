@@ -226,4 +226,13 @@ export default class Model {
       }
     }
   };
+
+  public changeClassName(input: HTMLInputElement) {
+    const form = input.form as HTMLFormElement;
+    if (input.value.length === 0) {
+      form.classList.add('blink');
+    } else {
+      form.classList.remove('blink');
+    }
+  }
 }

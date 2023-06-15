@@ -37,7 +37,7 @@
 }
 
 .clean {
-  animation: clean 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
+  animation: clean 1s cubic-bezier(0.165, 0.84, 0.44, 1) both;
 }
 
 @keyframes clean {
@@ -50,5 +50,22 @@
     transform: scale(2);
     filter: blur(4px);
     opacity: 0;
+  }
+}
+
+.blink {
+  animation: blink 1.5s infinite both;
+}
+
+@keyframes blink {
+  0% {
+    background-color: white;
+  }
+  50% {
+    background-color: #95ffff;
+  }
+
+  100% {
+    background-color: white;
   }
 }

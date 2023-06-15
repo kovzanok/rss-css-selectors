@@ -15,7 +15,7 @@ export default class CssInput extends GameBlock {
     });
     const form = createElement<HTMLFormElement>({
       tag: 'form',
-      className: 'css-form',
+      className: 'css-form blink',
       eventHandlers: { submit: this.controller.handleSubmit },
     });
 
@@ -25,7 +25,9 @@ export default class CssInput extends GameBlock {
         placeholder: 'Type your selector',
       },
       className: 'css-input',
+      eventHandlers: { input: this.controller.handleInput },
     });
+    input.autofocus = true;
 
     const button = createElement<HTMLButtonElement>({
       tag: 'button',
