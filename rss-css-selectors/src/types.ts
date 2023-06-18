@@ -7,7 +7,7 @@ export interface Level {
 
 export type Progress = LevelProgress[];
 
-type LevelProgress = {
+export type LevelProgress = {
   levelNum: number;
   isDone: boolean;
   wasHelpUsed: boolean;
@@ -23,7 +23,7 @@ type AttributeObjType = {
 
 export type ElementCreationParams = {
   tag: string;
-  innerHTML?:string;
+  innerHTML?: string;
   disabled?: boolean;
   attributes?: AttributeObjType;
   className?: string;

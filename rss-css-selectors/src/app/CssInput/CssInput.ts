@@ -1,10 +1,13 @@
+import store from '../../redux/store';
 import GameBlock from '../../utils/GameBlock';
 import { createElement } from '../../utils/utils';
 import './CssInput.scss';
 
 export default class CssInput extends GameBlock {
   private form!: HTMLFormElement;
-  constructor(searchedSelector: string) {
+  constructor() {
+    const { levelInfo } = store.getState().level;
+    const { searchedSelector } = levelInfo;
     super({ searchedSelector });
   }
 

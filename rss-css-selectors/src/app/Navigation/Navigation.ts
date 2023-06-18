@@ -3,10 +3,15 @@ import GameBlock from '../../utils/GameBlock';
 import { levels } from '../../levels';
 import { createElement } from '../../utils/utils';
 import './Navigation.scss';
+import store from '../../redux/store';
 
 export default class Navigation extends GameBlock {
-  constructor(private levelNum: number, progress: Progress) {
+  private levelNum: number;
+  constructor() {
+    const { levelNum } = store.getState().level;
+    const progress = store.getState().progress;
     super({}, progress);
+    this.levelNum = levelNum;
   }
 
   public renderNavigation(): HTMLDivElement {

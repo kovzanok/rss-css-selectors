@@ -1,3 +1,4 @@
+import store from '../../redux/store';
 import GameBlock from '../../utils/GameBlock';
 import { createElement, renderNestedElements, splitMarkupString } from '../../utils/utils';
 import './GameBoard.scss';
@@ -8,7 +9,9 @@ export default class GameBoard extends GameBlock {
     className: 'board__helper',
   });
   private gameField!: HTMLDivElement;
-  constructor(searchedEl: string, markup: string, searchedSelector: string) {
+  constructor() {
+    const { levelInfo } = store.getState().level;
+    const { searchedEl, markup, searchedSelector } = levelInfo;
     super({ searchedEl, markup, searchedSelector });
   }
 

@@ -1,10 +1,13 @@
+import store from '../../redux/store';
 import GameBlock from '../../utils/GameBlock';
 import { createElement, renderNestedMarkup, splitMarkupString } from '../../utils/utils';
 import './HtmlMarkup.scss';
 
 export default class HtmlMarkup extends GameBlock {
   private markupElement!: HTMLDivElement;
-  constructor(markup: string) {
+  constructor() {
+    const { levelInfo } = store.getState().level;
+    const { markup } = levelInfo;
     super({ markup });
   }
 

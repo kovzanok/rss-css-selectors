@@ -10,6 +10,8 @@ import CssInput from './CssInput/CssInput';
 import GameBoard from './GameBoard.ts/GameBoard';
 import HtmlMarkup from './HtmlMarkup/HtmlMarkup';
 import Popup from './Popup/Popup';
+import store from '../redux/store';
+import { LevelProgress } from '../types';
 
 export default class Model {
   private popupElement!: HTMLDivElement;
@@ -113,7 +115,8 @@ export default class Model {
   }
 
   private findFirstNotcompletedLevel() {
-    const completedLevelNums = this.app.progress
+    const progress = store.getState().progress;
+    const completedLevelNums = progress
       .map((levelInfo) => levelInfo.levelNum)
       .sort((a, b) => a - b);
     const allLevelNums = new Array(levels.length).fill(0).map((_, index) => index);
@@ -125,6 +128,7 @@ export default class Model {
 
   public removeGameField(): void {
     const game = this.gameBoard.getGameField();
+    const { levelNum } = store.getState().level;
     if (this.isWin()) {
       removeSpecialElements(
         game,
@@ -133,7 +137,7 @@ export default class Model {
           this.popupElement = this.popup.renderPopup();
           document.body.append(this.popupElement);
 
-          this.goToLevel(this.app.levelNum);
+          this.goToLevel(levelNum);
         }).bind(this)
       );
     } else if (this.isLastLevel()) {
@@ -153,7 +157,7 @@ export default class Model {
   }
 
   public goToLevel(levelNum: number) {
-    this.app.levelNum = levelNum;
+    store.dispatch({ type: 'currentLevel/changeLevel', payload: levelNum });
     this.app.restart();
   }
 
@@ -181,36 +185,48 @@ export default class Model {
     isDone?: boolean;
     wasHelpUsed?: boolean;
   }) {
-    const savedLevel = this.app.progress.find((level) => level.levelNum === this.app.levelNum);
-    if (savedLevel) {
+    const progress = store.getState().progress;
+    const { levelNum } = store.getState().level;
+    const savedLevel = { ...progress.find((level) => level.levelNum === levelNum) };
+    if (Object.keys(savedLevel).length === 3) {
       if (isDone) savedLevel.isDone = isDone;
       if (wasHelpUsed) savedLevel.wasHelpUsed = wasHelpUsed;
+      store.dispatch({ type: 'progress/changeLevel', payload: savedLevel as LevelProgress });
     } else {
-      this.app.progress.push({
-        levelNum: this.app.levelNum,
-        isDone: isDone,
-        wasHelpUsed: wasHelpUsed,
+      store.dispatch({
+        type: 'progress/addLevel',
+        payload: {
+          levelNum: levelNum,
+          isDone: isDone,
+          wasHelpUsed: wasHelpUsed,
+        },
       });
     }
   }
 
   public resetProgress() {
-    this.app.progress = [];
-    this.app.levelNum = 0;
+    store.dispatch({ type: 'currentLevel/changeLevel', payload: 0 });
+    store.dispatch({
+      type: 'progress/reset',
+      payload: { levelNum: 0, wasHelpUsed: false, isDone: false },
+    });
     this.app.restart();
   }
 
   public nextLevel = () => {
-    this.app.levelNum += 1;
+    const { levelNum } = store.getState().level;
+    store.dispatch({ type: 'currentLevel/changeLevel', payload: levelNum + 1 });
     this.app.restart();
   };
 
   private isLastLevel(): boolean {
-    return this.app.levelNum === levels.length - 1;
+    const { levelNum } = store.getState().level;
+    return levelNum === levels.length - 1;
   }
 
   private isWin(): boolean {
-    return this.app.progress.length === levels.length;
+    const progress = store.getState().progress;
+    return progress.length === levels.length;
   }
 
   public toggleMenu = (e: Event): void => {
