@@ -8,7 +8,7 @@ interface LevelAction {
 
 const levelNum = Number(window.localStorage.getItem('rss-css-selector-lvl'));
 
-const initialtLevelState = {
+export const initialtLevelState = {
   levelNum,
   levelInfo: levels[levelNum],
 };
