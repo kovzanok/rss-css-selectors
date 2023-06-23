@@ -35,7 +35,6 @@ const initialProgressState: Progress = JSON.parse(
 );
 
 export function progressReducer(state = initialProgressState, action: ProgressAction) {
-  console.log(state, action);
   switch (action.type) {
     case 'progress/addLevel':
       return [...state, action.payload];
