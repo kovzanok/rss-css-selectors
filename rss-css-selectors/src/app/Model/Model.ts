@@ -129,7 +129,7 @@ export default class Model {
   public removeGameField(): void {
     const game = this.gameBoard.getGameField();
     const { levelNum } = store.getState().level;
-    if (this.isWin()) {
+    if (Model.isWin()) {
       removeSpecialElements(
         game,
         this.cssInput.searchedSelector as string,
@@ -140,7 +140,7 @@ export default class Model {
           this.goToLevel(levelNum);
         }).bind(this)
       );
-    } else if (this.isLastLevel()) {
+    } else if (Model.isLastLevel()) {
       const num = this.findFirstNotcompletedLevel();
       removeSpecialElements(
         game,
@@ -219,12 +219,12 @@ export default class Model {
     this.app.restart();
   };
 
-  private isLastLevel(): boolean {
+  private static isLastLevel(): boolean {
     const { levelNum } = store.getState().level;
     return levelNum === levels.length - 1;
   }
 
-  private isWin(): boolean {
+  private static isWin(): boolean {
     const progress = store.getState().progress;
     return progress.length === levels.length;
   }
