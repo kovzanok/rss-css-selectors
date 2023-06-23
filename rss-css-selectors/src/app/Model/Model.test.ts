@@ -30,3 +30,14 @@ describe('Model.hightlightElements', () => {
     );
   });
 });
+
+describe('Model.removeHightlight', () => {
+  test('removeHightlight', () => {
+    document.body.innerHTML = '<div class="highlighten"></div><span class="highlighten"></span>';
+    const firstElement = document.querySelector('div') as HTMLDivElement;
+    const secondElement = document.querySelector('span') as HTMLSpanElement;
+    Model.removeHightlight(firstElement, secondElement);
+
+    expect(document.body.innerHTML).toBe('<div class=""></div><span class=""></span>');
+  });
+});
