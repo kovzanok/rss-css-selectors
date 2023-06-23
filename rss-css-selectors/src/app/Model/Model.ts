@@ -15,6 +15,7 @@ import { LevelProgress } from '../../types';
 
 export default class Model {
   private popupElement!: HTMLDivElement;
+  private static wasVictoryShown: boolean = false;
   constructor(
     private gameBoard: GameBoard,
     private htmlMarkup: HtmlMarkup,
@@ -129,16 +130,20 @@ export default class Model {
   public removeGameField(): void {
     const game = this.gameBoard.getGameField();
     const { levelNum } = store.getState().level;
-    if (Model.isWin()) {
+    if (Model.isWin() && !Model.wasVictoryShown) {
       removeSpecialElements(
         game,
         this.cssInput.searchedSelector as string,
         (() => {
           this.popupElement = this.popup.renderPopup();
           document.body.append(this.popupElement);
-
+          Model.wasVictoryShown = true;
           this.goToLevel(levelNum);
         }).bind(this)
+      );
+    } else if (Model.wasVictoryShown) {
+      removeSpecialElements(game, this.cssInput.searchedSelector as string, () =>
+        this.goToLevel(0)
       );
     } else if (Model.isLastLevel()) {
       const num = this.findFirstNotcompletedLevel();
@@ -210,6 +215,7 @@ export default class Model {
       type: 'progress/reset',
       payload: { levelNum: 0, wasHelpUsed: false, isDone: false },
     });
+    Model.wasVictoryShown = false;
     this.app.restart();
   }
 
