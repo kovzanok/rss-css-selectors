@@ -5,6 +5,7 @@ const jestConfig: JestConfigWithTsJest = {
   preset: 'ts-jest/presets/default-esm', // or other ESM presets
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
+    '\\.(scss)$': '<rootDir>/src/test/mocks.ts',
   },
   transform: {
    
