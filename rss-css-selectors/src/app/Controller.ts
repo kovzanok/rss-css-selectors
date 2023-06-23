@@ -73,7 +73,7 @@ export default class Controller {
   public handleInput = (e: Event) => {
     const target = e.target;
     if (target instanceof HTMLInputElement) {
-      this.model.changeClassName(target);
+      Model.changeClassName(target);
     }
   };
 
