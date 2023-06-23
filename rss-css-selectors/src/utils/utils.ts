@@ -1,8 +1,8 @@
 import { ElementCreationParams } from '../types';
 
-type splitMarkupStringFunction = (markup: string) => string[];
+type SplitMarkupStringFunction = (markup: string) => string[];
 
-export const splitMarkupString: splitMarkupStringFunction = (markup) => {
+export const splitMarkupString: SplitMarkupStringFunction = (markup) => {
   return markup
     .split('\n')
     .map((el) => {
@@ -11,9 +11,9 @@ export const splitMarkupString: splitMarkupStringFunction = (markup) => {
     .filter((el) => el.length !== 0);
 };
 
-type findElementIndexFunction = (element: HTMLElement, elementList: HTMLElement[]) => number;
+type FindElementIndexFunction = (element: HTMLElement, elementList: HTMLElement[]) => number;
 
-export const findElementIndex: findElementIndexFunction = (element, elementList) => {
+export const findElementIndex: FindElementIndexFunction = (element, elementList) => {
   const index = elementList.findIndex((el) => el === element);
   return index;
 };
