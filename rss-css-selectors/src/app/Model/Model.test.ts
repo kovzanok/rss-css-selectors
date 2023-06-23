@@ -41,3 +41,12 @@ describe('Model.removeHightlight', () => {
     expect(document.body.innerHTML).toBe('<div class=""></div><span class=""></span>');
   });
 });
+
+describe('Model.separateElementAndMarkup', () => {
+  test('separateElementAndMarkup', () => {    
+    const firstElement = document.createElement('div');
+    firstElement.textContent = 'Test';
+    const secondElement = document.createElement('span');
+    expect(Model.separateElementAndMarkup(firstElement, secondElement)).toEqual([secondElement,firstElement]);
+  });
+});
