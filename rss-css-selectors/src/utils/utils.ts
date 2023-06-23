@@ -5,8 +5,10 @@ type splitMarkupStringFunction = (markup: string) => string[];
 export const splitMarkupString: splitMarkupStringFunction = (markup) => {
   return markup
     .split('\n')
-    .slice(1)
-    .map((el) => el.trim());
+    .map((el) => {
+      return el.trim();
+    })
+    .filter((el) => el.length !== 0);
 };
 
 type findElementIndexFunction = (element: HTMLElement, elementList: HTMLElement[]) => number;
