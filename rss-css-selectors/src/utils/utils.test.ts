@@ -1,4 +1,5 @@
 import { splitMarkupString, findElementIndex, getAllChildElements } from './utils';
+import Model from '../app/Model';
 
 describe('splitMarkupString', () => {
   test('remove first empty array element', () => {
@@ -97,5 +98,23 @@ describe('getAllChildElements', () => {
     }
     parentElement.append(...children);
     expect(getAllChildElements(parentElement)).toEqual(resultArr);
+  });
+});
+
+describe('Model.getElementMarkup', () => {
+  const element = document.createElement('div');
+  test('element without attributes', () => {
+    element.textContent = '<tag>';
+    expect(Model.getElementMarkup(element)).toBe('<tag></tag>');
+  });
+  test('element with className', () => {
+    element.textContent = '<tag className="className"/>';
+    expect(Model.getElementMarkup(element)).toBe('<tag className="className"></tag>');
+  });
+  test('element with child element', () => {
+    element.textContent = '<tag className="className"/>';
+    element.append(document.createElement('div'));
+    expect(Model.getElementMarkup(element)).toBe('<tag className="className"></tag>');
+    element.innerHTML = '';
   });
 });
