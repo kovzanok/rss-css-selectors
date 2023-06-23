@@ -1,4 +1,5 @@
-import { splitMarkupString, findElementIndex, getAllChildElements } from './utils';
+import { ElementCreationParams } from '../types';
+import { splitMarkupString, findElementIndex, getAllChildElements, createElement } from './utils';
 
 describe('splitMarkupString', () => {
   test('remove first empty array element', () => {
@@ -100,3 +101,34 @@ describe('getAllChildElements', () => {
   });
 });
 
+describe('createElement', () => {
+  test('create element with tag', () => {
+    const params: ElementCreationParams = {
+      tag: 'div',
+    };
+    expect(createElement(params)).toEqual(document.createElement('div'));
+  });
+  test('create element with tag and className', () => {
+    const params: ElementCreationParams = {
+      tag: 'div',
+      className: 'className',
+    };
+
+    const result = document.createElement('div');
+    result.className = 'className';
+    expect(createElement(params)).toEqual(result);
+  });
+  test('create element with tag, className and text content', () => {
+    const params: ElementCreationParams = {
+      tag: 'div',
+      className: 'className',
+      textContent: 'Test text',
+    };
+
+    const result = document.createElement('div');
+    result.className = 'className';
+    result.textContent = 'Test text';
+
+    expect(createElement(params)).toEqual(result);
+  });
+});
