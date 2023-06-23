@@ -7,19 +7,19 @@ html {
 @font-face {
   font-family: 'Futura Condensed';
   src: local('Futura Condensed'),
-    url('../assests/fonts/Futura\ Condensed\ Medium.otf') format('opentype');
+    url('../assets/fonts/Futura\ Condensed\ Medium.otf') format('opentype');
 }
 
 @font-face {
   font-family: 'Futura Condensed Bold';
   src: local('Futura Condensed Bold'),
-    url('../assests/fonts/Futura\ Condensed\ Bold.otf') format('opentype');
+    url('../assets/fonts/Futura\ Condensed\ Bold.otf') format('opentype');
 }
 
 @font-face {
   font-family: 'Futura Condensed Light';
   src: local('Futura Condensed Bold'),
-    url('../assests/fonts/Futura\ Condensed\ Light\ Regular.otf') format('opentype');
+    url('../assets/fonts/Futura\ Condensed\ Light\ Regular.otf') format('opentype');
 }
 
 body * {
@@ -32,6 +32,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-image: url('../assests/img/background.jpg');
+  background-image: url('../assets/img/background.jpg');
   background-size: cover;
 }

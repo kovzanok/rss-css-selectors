@@ -33,7 +33,7 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url('../../assests/img/table.png');
+    background-image: url('../../assets/img/table.png');
     border-radius: 20px;
     @include media-post-desktop {
       width: 70%;
@@ -85,45 +85,45 @@
 
 necklace {
   @extend %board-item;
-  background-image: url('../../assests/img/necklace.png');
+  background-image: url('../../assets/img/necklace.png');
 
   sapphire {
     @extend %board-inner-necklace-item;
-    background-image: url('../../assests/img/inner-sapphire.png');
+    background-image: url('../../assets/img/inner-sapphire.png');
   }
 
   ruby {
     @extend %board-inner-necklace-item;
-    background-image: url('../../assests/img/inner-ruby.png');
+    background-image: url('../../assets/img/inner-ruby.png');
   }
 
   &.gold {
-    background-image: url('../../assests/img/gold-necklace.png');
+    background-image: url('../../assets/img/gold-necklace.png');
 
     sapphire {
       @extend %board-inner-necklace-item;
-      background-image: url('../../assests/img/inner-sapphire.png');
+      background-image: url('../../assets/img/inner-sapphire.png');
     }
   }
 
   &#empire {
-    background-image: url('../../assests/img/empire-necklace.png');
+    background-image: url('../../assets/img/empire-necklace.png');
   }
 }
 
 ring {
   @extend %board-item;
   box-sizing: border-box;
-  background-image: url('../../assests/img/ring.png');
+  background-image: url('../../assets/img/ring.png');
   ruby {
     @extend %board-inner-ring-item;
-    background-image: url('../../assests/img/inner-ring-ruby.png');
+    background-image: url('../../assets/img/inner-ring-ruby.png');
   }
   &.gold {
-    background-image: url('../../assests/img/gold-ring.png');
+    background-image: url('../../assets/img/gold-ring.png');
     sapphire {
       @extend %board-inner-ring-item;
-      background-image: url('../../assests/img/inner-ring-sapphire.png');
+      background-image: url('../../assets/img/inner-ring-sapphire.png');
     }
   }
 }
@@ -131,11 +131,11 @@ ring {
 ruby {
   @extend %board-item;
   box-sizing: border-box;
-  background-image: url('../../assests/img/ruby.png');
+  background-image: url('../../assets/img/ruby.png');
 }
 
 sapphire {
   @extend %board-item;
   box-sizing: border-box;
-  background-image: url('../../assests/img/sapphire.png');
+  background-image: url('../../assets/img/sapphire.png');
 }
