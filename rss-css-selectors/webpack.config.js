@@ -3,6 +3,7 @@ const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const EslingPlugin = require('eslint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 const baseConfig = {
     entry: path.resolve(__dirname, './src/index'),
@@ -37,6 +38,7 @@ const baseConfig = {
             filename: 'styles.css',
         }),
         new EslingPlugin({ extensions: 'ts' }),
+        new FaviconsWebpackPlugin('./src/assets/icons/favicon.ico')
     ],
 };
 
