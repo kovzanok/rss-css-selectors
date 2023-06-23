@@ -43,10 +43,28 @@ describe('Model.removeHightlight', () => {
 });
 
 describe('Model.separateElementAndMarkup', () => {
-  test('separateElementAndMarkup', () => {    
+  test('separateElementAndMarkup', () => {
     const firstElement = document.createElement('div');
     firstElement.textContent = 'Test';
     const secondElement = document.createElement('span');
-    expect(Model.separateElementAndMarkup(firstElement, secondElement)).toEqual([secondElement,firstElement]);
+    expect(Model.separateElementAndMarkup(firstElement, secondElement)).toEqual([
+      secondElement,
+      firstElement,
+    ]);
+  });
+});
+
+describe('Model.changeClassName', () => {
+  test('add blink class name', () => {
+    document.body.innerHTML = '<form><input></form>';
+    const input = document.querySelector('input') as HTMLInputElement;
+    Model.changeClassName(input);
+    expect(document.body.innerHTML).toBe('<form class="blink"><input></form>');
+  });
+  test('remove blink class name', () => {
+    document.body.innerHTML = '<form class="blink"><input value="1"></form>';
+    const input = document.querySelector('input') as HTMLInputElement;
+    Model.changeClassName(input);
+    expect(document.body.innerHTML).toBe('<form class=""><input value="1"></form>');
   });
 });
