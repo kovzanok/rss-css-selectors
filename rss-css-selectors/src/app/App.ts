@@ -5,7 +5,7 @@ import Controller from './Controller';
 import GameBlock from '../utils/GameBlock';
 import Navigation from './Navigation/Navigation';
 import './App.scss';
-import Model from './Model';
+import Model from './Model/Model';
 import Popup from './Popup/Popup';
 import store from '../redux/store';
 

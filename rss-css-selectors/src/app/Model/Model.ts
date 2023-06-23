@@ -1,17 +1,17 @@
-import { levels } from '../levels';
+import { levels } from '../../levels';
 import {
   findElementIndex,
   getAllChildElements,
   removeSpecialElements,
   shakeElement,
-} from '../utils/utils';
-import App from './App';
-import CssInput from './CssInput/CssInput';
-import GameBoard from './GameBoard.ts/GameBoard';
-import HtmlMarkup from './HtmlMarkup/HtmlMarkup';
-import Popup from './Popup/Popup';
-import store from '../redux/store';
-import { LevelProgress } from '../types';
+} from '../../utils/utils';
+import App from '../App';
+import CssInput from '../CssInput/CssInput';
+import GameBoard from '../GameBoard.ts/GameBoard';
+import HtmlMarkup from '../HtmlMarkup/HtmlMarkup';
+import Popup from '../Popup/Popup';
+import store from '../../redux/store';
+import { LevelProgress } from '../../types';
 
 export default class Model {
   private popupElement!: HTMLDivElement;

@@ -1,5 +1,5 @@
 import GameBoard from './GameBoard.ts/GameBoard';
-import Model from './Model';
+import Model from './Model/Model';
 
 export default class Controller {
   private model!: Model;
