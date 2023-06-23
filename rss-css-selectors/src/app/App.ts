@@ -41,8 +41,6 @@ export default class App {
     );
 
     this.menuContainer.append(navigation.renderNavigation());
-
-    console.log('start app');
   }
 
   public restart() {
