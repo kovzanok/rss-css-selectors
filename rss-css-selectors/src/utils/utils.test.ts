@@ -1,5 +1,4 @@
-import { splitMarkupString } from './utils';
-
+import { splitMarkupString, findElementIndex } from './utils';
 
 describe('splitMarkupString', () => {
   test('remove first empty array element', () => {
@@ -35,4 +34,25 @@ describe('splitMarkupString', () => {
       '<element/>',
     ]);
   });
+});
+
+describe('findElementIndex', () => {
+  const elementIndexToSearch = [2, 6, 1, 7];
+  const list = new Array(10).fill(0).map((_, index) => {
+    const element = document.createElement('tag');
+    element.id = String(index);
+    return element;
+  });
+
+  function makeTest(index: number) {
+    const expected = index;
+    const element = list[index];
+    test(`find element by index ${index}`, () => {
+      expect(findElementIndex(element, list)).toBe(expected);
+    });
+  }
+
+  for (const index of elementIndexToSearch) {
+    makeTest(index);
+  }
 });
