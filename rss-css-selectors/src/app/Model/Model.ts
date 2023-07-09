@@ -238,21 +238,20 @@ export default class Model {
   public toggleMenu = (e: Event): void => {
     const target = e.target;
 
-    if (target && target instanceof HTMLElement) {
-      if (target.id === 'burger') {
-        const main = target.parentElement as HTMLElement;
-        const menu = main.querySelector('#menu') as HTMLElement;
-        menu.classList.toggle('active');
-        document.body.classList.toggle('lock');
-      } else if (
-        target.classList.contains('level-item') ||
-        target.classList.contains('menu') ||
-        target.classList.contains('reset-button')
-      ) {
-        const menu = document.getElementById('menu') as HTMLElement;
-        menu.classList.remove('active');
-        document.body.classList.remove('lock');
-      }
+    if (!(target instanceof HTMLElement)) return;
+    if (target.id === 'burger') {
+      const main = target.parentElement as HTMLElement;
+      const menu = main.querySelector('#menu') as HTMLElement;
+      menu.classList.toggle('active');
+      document.body.classList.toggle('lock');
+    } else if (
+      target.classList.contains('level-item') ||
+      target.classList.contains('menu') ||
+      target.classList.contains('reset-button')
+    ) {
+      const menu = document.getElementById('menu') as HTMLElement;
+      menu.classList.remove('active');
+      document.body.classList.remove('lock');
     }
   };
 
