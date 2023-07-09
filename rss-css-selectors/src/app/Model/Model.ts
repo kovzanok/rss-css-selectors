@@ -30,9 +30,8 @@ export default class Model {
   ): HTMLElement[] {
     if (hoveredElement.textContent?.length === 0) {
       return [hoveredElement, relativeEl];
-    } else {
-      return [relativeEl, hoveredElement];
     }
+    return [relativeEl, hoveredElement];
   }
 
   public static displayHelper(elementToGetHelperText: HTMLElement): void {
