@@ -74,12 +74,10 @@ export default class Model {
   public findHoveredRelative(parentElement: HTMLElement, hoveredElement: HTMLElement): HTMLElement {
     const allChildrenArr = getAllChildElements(parentElement);
     const index = findElementIndex(hoveredElement, allChildrenArr);
-    let relativeParent;
-    if (parentElement.classList.contains('markup')) {
-      relativeParent = this.gameBoard.getGameField();
-    } else {
-      relativeParent = this.htmlMarkup.getMarkupElement();
-    }
+    const relativeParent = parentElement.classList.contains('markup')
+      ? this.gameBoard.getGameField()
+      : this.htmlMarkup.getMarkupElement();
+
     const allChildrenRelArr = getAllChildElements(relativeParent);
     const relativeEl = allChildrenRelArr[index];
     return relativeEl;
