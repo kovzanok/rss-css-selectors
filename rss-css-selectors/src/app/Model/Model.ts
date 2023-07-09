@@ -141,11 +141,6 @@ export default class Model {
           }).bind(this)
         );
         break;
-      case Model.wasVictoryShown:
-        removeSpecialElements(game, this.cssInput.searchedSelector as string, () =>
-          this.goToLevel(0)
-        );
-        break;
       case Model.isLastLevel(): {
         const num = this.findFirstNotcompletedLevel();
         removeSpecialElements(
