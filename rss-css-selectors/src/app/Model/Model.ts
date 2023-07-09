@@ -127,34 +127,41 @@ export default class Model {
   public removeGameField(): void {
     const game = this.gameBoard.getGameField();
     const { levelNum } = store.getState().level;
-    if (Model.isWin() && !Model.wasVictoryShown) {
-      removeSpecialElements(
-        game,
-        this.cssInput.searchedSelector as string,
-        (() => {
-          this.popupElement = this.popup.renderPopup();
-          document.body.append(this.popupElement);
-          Model.wasVictoryShown = true;
-          this.goToLevel(levelNum);
-        }).bind(this)
-      );
-    } else if (Model.wasVictoryShown) {
-      removeSpecialElements(game, this.cssInput.searchedSelector as string, () =>
-        this.goToLevel(0)
-      );
-    } else if (Model.isLastLevel()) {
-      const num = this.findFirstNotcompletedLevel();
-      removeSpecialElements(
-        game,
-        this.cssInput.searchedSelector as string,
-        (() => this.goToLevel(num)).bind(this)
-      );
-    } else {
-      removeSpecialElements(
-        game,
-        this.cssInput.searchedSelector as string,
-        this.nextLevel.bind(this)
-      );
+
+    switch (true) {
+      case Model.isWin() && !Model.wasVictoryShown:
+        removeSpecialElements(
+          game,
+          this.cssInput.searchedSelector as string,
+          (() => {
+            this.popupElement = this.popup.renderPopup();
+            document.body.append(this.popupElement);
+            Model.wasVictoryShown = true;
+            this.goToLevel(levelNum);
+          }).bind(this)
+        );
+        break;
+      case Model.wasVictoryShown:
+        removeSpecialElements(game, this.cssInput.searchedSelector as string, () =>
+          this.goToLevel(0)
+        );
+        break;
+      case Model.isLastLevel(): {
+        const num = this.findFirstNotcompletedLevel();
+        removeSpecialElements(
+          game,
+          this.cssInput.searchedSelector as string,
+          (() => this.goToLevel(num)).bind(this)
+        );
+        break;
+      }
+      default:
+        removeSpecialElements(
+          game,
+          this.cssInput.searchedSelector as string,
+          this.nextLevel.bind(this)
+        );
+        break;
     }
   }
 
